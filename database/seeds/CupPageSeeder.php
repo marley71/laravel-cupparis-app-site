@@ -5,7 +5,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
-
+use App\Models\CupPage;
 
 class CupPageSeeder extends Seeder
 {
@@ -18,37 +18,20 @@ class CupPageSeeder extends Seeder
     {
 
 
-        $dumpFile = 'cup_geo_seed_20201030';
-        $path = base_path();
-        $mySqlString = env('MYSQL_PATH', 'mysql') . ' --user=' . env('DB_USERNAME', '')
-            . ' --password=' . env('DB_PASSWORD', '') . ' ' . env('DB_DATABASE', '')
-            . ' < ./database/dump/'.$dumpFile.'.sql';
+        CupPage::create([
+           'titolo_id' => 'pagina1',
+           'content_it' => 'contenuto1'
+        ]);
 
-        $cmdArray = [
-          $mySqlString => 'seed',
-        ];
+        CupPage::create([
+            'titolo_id' => 'pagina2',
+            'content_it' => 'contenuto2'
+        ]);
 
-
-        foreach ($cmdArray as $cmd => $group) {
-
-            $cmdArrayProcessed[] = $cmd;
-
-            $process = new Process($cmd, $path);
-            $process->setTimeout(null);
-            $process->run();
-
-// executes after the command finishes
-            if (!$process->isSuccessful()) {
-                throw new ProcessFailedException($process);
-            }
-
-            $this->command->comment($process->getOutput());
-        }
-
-        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-
-        $this->command->comment('Tabelle geografice inizializzate (dump: '.$dumpFile.')');
-
+        CupPage::create([
+            'titolo_id' => 'pagina3',
+            'content_it' => 'contenuto3'
+        ]);
 
     }
 }

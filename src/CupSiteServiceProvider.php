@@ -1,4 +1,4 @@
-<?php namespace Gecche\Cupparis\App\Geografiche;
+<?php namespace Marley71\Cupparis\App\Site;
 
 use Gecche\Cupparis\App\Foorm\FoormManager;
 use Illuminate\Support\Facades\Blade;
@@ -28,7 +28,7 @@ class CupSiteServiceProvider extends ServiceProvider
 
         $this->publishes([
 //            __DIR__ . '/../config/themes.php' => config_path('themes.php'),
-            __DIR__ . '/../cupparis-site.json' => base_path('cupparis/cupparis-site.json'),
+            __DIR__ . '/../cupparis-app-site.json' => base_path('cupparis/cupparis-app-site.json'),
         ], 'config-json');
 
         //Publishing and overwriting app folders

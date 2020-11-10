@@ -1,5 +1,5 @@
 {
-    "name": "marley71/laravel-cupparis-site",
+    "name": "marley71/laravel-cupparis-app-site",
     "description": "Pacchetto per gestione della parte front-end pubblica di Cupparis Laravel App",
     "keywords": ["laravel", "cupparis"],
     "license": "MIT",
@@ -40,7 +40,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Marley71\\Cupparis\\App\\CupSite\\CupSiteServiceProvider"
+                "Marley71\\Cupparis\\App\\Site\\CupSiteServiceProvider"
             ]
         }
     }
