@@ -1,6 +1,6 @@
 <?php
 
-namespace Marley71\Cupparis\App\Models;
+namespace Marley71\Cupparis\App\Site\Models;
 
 use Gecche\Cupparis\App\Breeze\Breeze;
 

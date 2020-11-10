@@ -1,6 +1,6 @@
 <?php
 
-namespace Marley71\Cupparis\App\Policies;
+namespace Marley71\Cupparis\App\Site\Policies;
 
 use App\Models\User;
 use App\Models\CupGeoComune;

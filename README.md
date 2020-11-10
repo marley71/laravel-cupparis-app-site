@@ -7,7 +7,8 @@ php artisan vendor:publish --provider="Marley71\Cupparis\App\Site\CupSiteService
 composer dump-autoload
 php artisan install-cupparis-package cupparis-app-site
 php artisan migrate
-php artisan db:seed --class=CupPageSeeder 
+php artisan db:seed --class=CupPageSeeder
+
 ```
 
 
@@ -17,4 +18,5 @@ disinstallazione
 php artisan uninstall-cupparis-package cupparis-app-site --json
 php artisan migrate:rollback
 rm -f database/migrations/*create_cup_pages_*.php
+
 ```  
