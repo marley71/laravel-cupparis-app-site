@@ -3,11 +3,11 @@
 namespace Marley71\Cupparis\App\Site\Policies;
 
 use App\Models\User;
-use App\Models\CupGeoComune;
+use App\Models\CupSitePage;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Gecche\PolicyBuilder\Facades\PolicyBuilder;
 
-class CupPagePolicy
+class CupSitePagePolicy
 {
     use HandlesAuthorization;
 

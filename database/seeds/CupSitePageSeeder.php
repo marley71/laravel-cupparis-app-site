@@ -5,9 +5,9 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
-use App\Models\CupPage;
+use App\Models\CupSitePage;
 
-class CupPageSeeder extends Seeder
+class CupSitePageSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,18 +18,18 @@ class CupPageSeeder extends Seeder
     {
 
 
-        CupPage::create([
-           'titolo_id' => 'pagina1',
+        CupSitePage::create([
+           'titolo_it' => 'pagina1',
            'content_it' => 'contenuto1'
         ]);
 
-        CupPage::create([
-            'titolo_id' => 'pagina2',
+        CupSitePage::create([
+            'titolo_it' => 'pagina2',
             'content_it' => 'contenuto2'
         ]);
 
-        CupPage::create([
-            'titolo_id' => 'pagina3',
+        CupSitePage::create([
+            'titolo_it' => 'pagina3',
             'content_it' => 'contenuto3'
         ]);
 

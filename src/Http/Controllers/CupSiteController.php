@@ -2,9 +2,11 @@
 
 namespace Marley71\Cupparis\App\Site\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Marley71\Cupparis\App\Site\Models\CupSitePage;
 
-class SiteController extends Controller
+class CupSiteController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,9 +23,10 @@ class SiteController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function page($titolo)
     {
-        return view('home');
+        $page = CupSitePage::where('titolo_it',$titolo)->first()->toArray();
+        return view('cup_site.pages.index',['page'=> $page]);
     }
 
     public function proveVue()

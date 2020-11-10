@@ -7,13 +7,13 @@ use Gecche\Cupparis\App\Breeze\Breeze;
 /**
  * Breeze (Eloquent) model for T_AREA table.
  */
-class CupPage extends Breeze
+class CupSitePage extends Breeze
 {
 
 
 //    use ModelWithUploadsTrait;
 
-    protected $table = 'cup_page';
+    protected $table = 'cup_site_pages';
 
     protected $guarded = ['id'];
 

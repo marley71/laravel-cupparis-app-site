@@ -39,7 +39,7 @@ class CupSiteServiceProvider extends ServiceProvider
             __DIR__ . '/../app/Policies' => app_path('Policies'),
 //            __DIR__ . '/../app/Services' => app_path('Services'),
 //            __DIR__ . '/../app/Http/Kernel.php' => app_path('Http/Kernel.php'),
-//            __DIR__ . '/../app/Http/Controllers/Controller.php' => app_path('Http/Controllers/Controller.php'),
+            __DIR__ . '/../app/Http/Controllers/CupSiteController.php' => app_path('Http/Controllers/CupSiteController.php'),
 //            __DIR__ . '/../app/Http/Controllers/DownloadController.php' => app_path('Http/Controllers/DownloadController.php'),
 //            __DIR__ . '/../app/Http/Kernel.php' => app_path('Http/Kernel.php'),
         ], 'models');
@@ -55,7 +55,7 @@ class CupSiteServiceProvider extends ServiceProvider
             // Export the migration
             if (! class_exists('CreateCupPagesTable')) {
                 $this->publishes([
-                    __DIR__ . '/../database/migrations/create_cup_pages_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-99) . '_create_cup_pages_table.php'),
+                    __DIR__ . '/../database/migrations/create_cup_site_pages_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-99) . '_create_cup_site_pages_table.php'),
 //                    __DIR__ . '/../database/migrations/create_cup_geo_aree_mondiali_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-98) . '_create_cup_geo_aree_mondiali_table.php'),
 //                    __DIR__ . '/../database/migrations/create_cup_geo_nazioni_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-97) . '_create_cup_geo_nazioni_table.php'),
 //                    __DIR__ . '/../database/migrations/create_cup_geo_aree_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-96) . '_create_cup_geo_aree_table.php'),
@@ -96,9 +96,12 @@ class CupSiteServiceProvider extends ServiceProvider
             //__DIR__ . '/../public/admin/pages' => public_path('admin/pages'),
         ], 'public');
 
+        $this->publishes([
+            __DIR__ . '/../resources/views/cup_site' => resource_path('views/cup_site'),
+            //__DIR__ . '/../public/admin/pages' => public_path('admin/pages'),
+        ], 'template');
 
-
-//        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
 
         $this->bootActivityLog();
 

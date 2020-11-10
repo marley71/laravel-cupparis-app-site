@@ -1,17 +1,17 @@
 {
   "foorm": {
     "entities": [
-      "cup_page"
+      "cup_site_page"
     ]
   },
   "modelconfs": {
     "files": [
-      "CupPage.js"
+      "CupSitePage.js"
     ]
   },
   "permissions": {
     "models": [
-      "cup_page"
+      "cup_site_page"
     ],
     "other_permissions": {
       "web": [
@@ -20,11 +20,11 @@
   },
   "policies": {
     "models": {
-      "\\App\\Models\\CupPage": "\\App\\Policies\\CupPagePolicy"
+      "\\App\\Models\\CupSitePage": "\\App\\Policies\\CupSitePagePolicy"
     }
   },
   "models": [
-    "CupPage"
+    "CupSitePage"
   ],
   "datafile-models": [
   ],
@@ -33,10 +33,11 @@
   "pages": [
   ],
   "config": [
+      "cupparis-cup-site"
   ],
   "database": {
     "seeds": [
-      "CupPageSeeder"
+      "CupSitePageSeeder"
     ],
     "dump": [
     ]

@@ -1,7 +1,7 @@
 
-var ModelCupPage = {
+var ModelCupSitePage = {
     search: {
-        modelName : 'cup_page',
+        modelName : 'cup_site_page',
         //langContext : 'user',
         fields : ['nome_it'],
     },
