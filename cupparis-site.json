@@ -1,0 +1,55 @@
+{
+  "foorm": {
+    "entities": [
+      "cup_geo_continente",
+      "cup_geo_area_mondiale",
+      "cup_geo_nazione",
+      "cup_geo_area",
+      "cup_geo_regione",
+      "cup_geo_provincia",
+      "cup_geo_comune",
+      "cup_geo_nazioni_istat",
+      "cup_geo_comuni_istat",
+      "cup_geo_comuni_aggiuntive"
+    ]
+  },
+  "modelconfs": {
+    "files": [
+      "CupPage.js"
+    ]
+  },
+  "permissions": {
+    "models": [
+      "cup_page"
+    ],
+    "other_permissions": {
+      "web": [
+      ]
+    }
+  },
+  "policies": {
+    "models": {
+      "\\App\\Models\\CupPage": "\\App\\Policies\\CupPagePolicy"
+    }
+  },
+  "models": [
+    "CupPage"
+  ],
+  "datafile-models": [
+  ],
+  "datafile-providers": [
+  ],
+  "pages": [
+  ],
+  "config": [
+    "cup-page"
+  ],
+  "database": {
+    "seeds": [
+      "CupPageSeeder"
+    ],
+    "dump": [
+      "cup_page_seed_20201030"
+    ]
+  }
+}

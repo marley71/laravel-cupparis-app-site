@@ -1,0 +1,47 @@
+{
+    "name": "marley71/laravel-cupparis-site",
+    "description": "Pacchetto per gestione della parte front-end pubblica di Cupparis Laravel App",
+    "keywords": ["laravel", "cupparis"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pier Paolo Ciullo",
+            "email": "ciullo@gmail.com"
+        }
+    ],
+    "require": {
+        "gecche/laravel-cupparis-app": "v6.x-dev"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.0",
+        "phpunit/phpunit": "^8.0",
+        "limedeck/phpunit-detailed-printer": "^5.0",
+        "orchestra/testbench": "^4.0"
+    },
+    "autoload": {
+        "classmap": [
+
+        ],
+        "psr-4": {
+            "Marley71\\Cupparis\\App\\Site\\": "src"
+        },
+        "files": [
+
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Marley71\\Cupparis\\App\\CupSite\\CupSiteServiceProvider"
+            ]
+        }
+    }
+}
