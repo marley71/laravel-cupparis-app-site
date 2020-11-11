@@ -5,7 +5,7 @@ use Gecche\Breeze\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 
-class CreateCupSitePagesTable extends Migration
+class CreateCupSiteSettingsTable extends Migration
 {
 
     /**
@@ -15,19 +15,15 @@ class CreateCupSitePagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('cup_site_pages', function (Blueprint $table) {
+        Schema::create('cup_site_settings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('menu_it');
             $table->string('titolo_it');
-            $table->text('content_it')->nullable();
-            $table->text('keywords')->nullable();
-            $table->boolean('attivo')->default(1);// varchar(50) DEFAULT NULL,
-            $table->integer('cup_site_page_id')->unsigned()->index()->nullable();
-            $table->foreign('cup_site_page_id')->references('id')->on('cup_site_pages')->onDelete('restrict')->onUpdate('cascade');
+            $table->text('logo')->nullable();
+            //$table->text('keywords')->nullable();
 
 //            $table->integer('area_id')->unsigned()->index();
 //            $table->foreign('area_id')->references('id')->on('cup_geo_aree')->onDelete('restrict')->onUpdate('cascade');
-
+            $table->boolean('attivo')->default(0);// varchar(50) DEFAULT NULL,
 
             $table->nullableOwnerships();
             $table->nullableTimestamps();

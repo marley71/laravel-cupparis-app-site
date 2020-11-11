@@ -1,17 +1,20 @@
 {
   "foorm": {
     "entities": [
-      "cup_site_page"
+      "cup_site_page",
+        "cup_site_setting"
     ]
   },
   "modelconfs": {
     "files": [
-      "CupSitePage.js"
+      "CupSitePage.js",
+        "CupSiteSetting.js"
     ]
   },
   "permissions": {
     "models": [
-      "cup_site_page"
+      "cup_site_page",
+        "cup_site_setting"
     ],
     "other_permissions": {
       "web": [
@@ -20,11 +23,12 @@
   },
   "policies": {
     "models": {
-      "\\App\\Models\\CupSitePage": "\\App\\Policies\\CupSitePagePolicy"
+      "\\App\\Models\\CupSitePage": "\\App\\Policies\\CupSitePagePolicy",
+        "\\App\\Models\\CupSiteSetting": "\\App\\Policies\\CupSiteSettingPolicy"
     }
   },
   "models": [
-    "CupSitePage"
+    "CupSitePage","CupSiteSetting"
   ],
   "datafile-models": [
   ],
@@ -33,11 +37,12 @@
   "pages": [
   ],
   "config": [
-      "cupparis-cup-site"
+      "cupparis-site"
   ],
   "database": {
     "seeds": [
-      "CupSitePageSeeder"
+      "CupSitePageSeeder",
+        "CupSiteSettingSeeder"
     ],
     "dump": [
     ]

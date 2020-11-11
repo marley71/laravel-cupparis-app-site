@@ -93,6 +93,7 @@ class CupSiteServiceProvider extends ServiceProvider
         //Publishing and overwriting public folders
         $this->publishes([
             __DIR__ . '/../public/admin/ModelConfs' => public_path('admin/ModelConfs'),
+            __DIR__ . '/../public/cup_site' => public_path('cup_site'),
             //__DIR__ . '/../public/admin/pages' => public_path('admin/pages'),
         ], 'public');
 

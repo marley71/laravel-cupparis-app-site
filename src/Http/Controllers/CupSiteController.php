@@ -25,8 +25,12 @@ class CupSiteController extends Controller
      */
     public function page($titolo)
     {
+        $layout = config('cupparis-site.layout');
         $page = CupSitePage::where('titolo_it',$titolo)->first()->toArray();
-        return view('cup_site.pages.index',['page'=> $page]);
+        return view('cup_site.' . $layout .'.pages.index',[
+            'page'=> $page,
+            'layout' => $layout
+        ]);
     }
 
     public function proveVue()
