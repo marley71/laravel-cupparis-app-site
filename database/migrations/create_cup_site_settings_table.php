@@ -17,8 +17,8 @@ class CreateCupSiteSettingsTable extends Migration
     {
         Schema::create('cup_site_settings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titolo_it');
-            $table->text('logo')->nullable();
+            $table->string('titolo_it')->nullable();
+            $table->string('logo')->nullable();
             //$table->text('keywords')->nullable();
 
 //            $table->integer('area_id')->unsigned()->index();
@@ -37,7 +37,7 @@ class CreateCupSiteSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('cup_site_pages');
+        Schema::drop('cup_site_settings');
     }
 
 }

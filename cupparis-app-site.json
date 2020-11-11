@@ -41,8 +41,9 @@
   ],
   "database": {
     "seeds": [
-      "CupSitePageSeeder",
-        "CupSiteSettingSeeder"
+        "CupSitePageSeeder",
+        "CupSiteSettingSeeder",
+        "CupSiteSeeder"
     ],
     "dump": [
     ]

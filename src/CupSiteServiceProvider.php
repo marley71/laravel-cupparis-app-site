@@ -56,7 +56,7 @@ class CupSiteServiceProvider extends ServiceProvider
             if (! class_exists('CreateCupPagesTable')) {
                 $this->publishes([
                     __DIR__ . '/../database/migrations/create_cup_site_pages_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-99) . '_create_cup_site_pages_table.php'),
-//                    __DIR__ . '/../database/migrations/create_cup_geo_aree_mondiali_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-98) . '_create_cup_geo_aree_mondiali_table.php'),
+                    __DIR__ . '/../database/migrations/create_cup_site_settings_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-98) . '_create_cup_site_settings_table.php'),
 //                    __DIR__ . '/../database/migrations/create_cup_geo_nazioni_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-97) . '_create_cup_geo_nazioni_table.php'),
 //                    __DIR__ . '/../database/migrations/create_cup_geo_aree_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-96) . '_create_cup_geo_aree_table.php'),
 //                    __DIR__ . '/../database/migrations/create_cup_geo_regioni_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-95) . '_create_cup_geo_regioni_table.php'),
