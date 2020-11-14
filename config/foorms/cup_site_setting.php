@@ -83,10 +83,10 @@ return [
             'id' => [
 
             ],
-            "content_id" => [
+            "logo" => [
 
             ],
-            "nome_it" => [
+            "properties" => [
 
             ],
             "attivo" => [

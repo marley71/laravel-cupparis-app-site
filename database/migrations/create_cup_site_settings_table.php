@@ -19,6 +19,8 @@ class CreateCupSiteSettingsTable extends Migration
             $table->increments('id');
             $table->string('titolo_it')->nullable();
             $table->string('logo')->nullable();
+            $table->text('properties')->default('{}');
+            $table->text('default_properties')->default('{}');
             //$table->text('keywords')->nullable();
 
 //            $table->integer('area_id')->unsigned()->index();

@@ -3,57 +3,57 @@
 
         <div class="row">
 
-            <div class="bg-distinct col-12 col-md-6 col-lg-4 text-center p-0 py-5">
+{{--            <div class="bg-distinct col-12 col-md-6 col-lg-4 text-center p-0 py-5">--}}
 
-                <div class="footer-svg-shape position-absolute absolute-top z-index-2 mt--n70 w-100 overflow-hidden pt--5">
-                    <svg viewBox="0 0 1440 28" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                        <path d="M0 28H1440C1440 28 1154 3.21961e-10 720 1.30487e-09C286 2.28777e-09 0 28 0 28Z"></path>
-                    </svg>
-                </div>
+{{--                <div class="footer-svg-shape position-absolute absolute-top z-index-2 mt--n70 w-100 overflow-hidden pt--5">--}}
+{{--                    <svg viewBox="0 0 1440 28" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">--}}
+{{--                        <path d="M0 28H1440C1440 28 1154 3.21961e-10 720 1.30487e-09C286 2.28777e-09 0 28 0 28Z"></path>--}}
+{{--                    </svg>--}}
+{{--                </div>--}}
 
-                <form method="post" action="#subscribe_url" class="px-4">
+{{--                <form method="post" action="#subscribe_url" class="px-4">--}}
 
-                    <input type="hidden" name="action" value="subscribe" tabindex="-1">
+{{--                    <input type="hidden" name="action" value="subscribe" tabindex="-1">--}}
 
-                    <p id="btnAriaFooterFormTitle" class="text-muted">
-                        Claim your candy now!
-                    </p>
-
-
-                    <div class="input-group-over input-group-pill mb-4">
-
-                        <input required class="form-control b-0" name="subscriber_email" type="email" value="" placeholder="email address..." aria-label="email address...">
-
-                        <button type="submit" class="btn bg-transparent shadow-none" aria-label="subscribe" aria-labelledby="btnAriaFooterFormTitle">
-                            <i class="fi fi-send fs--18"></i>
-                        </button>
-
-                    </div>
+{{--                    <p id="btnAriaFooterFormTitle" class="text-muted">--}}
+{{--                        Claim your candy now!--}}
+{{--                    </p>--}}
 
 
-                </form>
+{{--                    <div class="input-group-over input-group-pill mb-4">--}}
 
-                <div class="mt--12">
+{{--                        <input required class="form-control b-0" name="subscriber_email" type="email" value="" placeholder="email address..." aria-label="email address...">--}}
 
-                    <a href="#!" class="btn btn-sm btn-facebook transition-hover-top mb-2 rounded-circle" rel="noopener" aria-label="facebook page">
-                        <i class="fi fi-social-facebook"></i>
-                    </a>
+{{--                        <button type="submit" class="btn bg-transparent shadow-none" aria-label="subscribe" aria-labelledby="btnAriaFooterFormTitle">--}}
+{{--                            <i class="fi fi-send fs--18"></i>--}}
+{{--                        </button>--}}
 
-                    <a href="#!" class="btn btn-sm btn-twitter transition-hover-top mb-2 rounded-circle" rel="noopener" aria-label="twitter page">
-                        <i class="fi fi-social-twitter"></i>
-                    </a>
+{{--                    </div>--}}
 
-                    <a href="#!" class="btn btn-sm btn-linkedin transition-hover-top mb-2 rounded-circle" rel="noopener" aria-label="linkedin page">
-                        <i class="fi fi-social-linkedin"></i>
-                    </a>
 
-                    <a href="#!" class="btn btn-sm btn-youtube transition-hover-top mb-2 rounded-circle" rel="noopener" aria-label="youtube page">
-                        <i class="fi fi-social-youtube"></i>
-                    </a>
+{{--                </form>--}}
 
-                </div>
+{{--                <div class="mt--12">--}}
 
-            </div>
+{{--                    <a href="#!" class="btn btn-sm btn-facebook transition-hover-top mb-2 rounded-circle" rel="noopener" aria-label="facebook page">--}}
+{{--                        <i class="fi fi-social-facebook"></i>--}}
+{{--                    </a>--}}
+
+{{--                    <a href="#!" class="btn btn-sm btn-twitter transition-hover-top mb-2 rounded-circle" rel="noopener" aria-label="twitter page">--}}
+{{--                        <i class="fi fi-social-twitter"></i>--}}
+{{--                    </a>--}}
+
+{{--                    <a href="#!" class="btn btn-sm btn-linkedin transition-hover-top mb-2 rounded-circle" rel="noopener" aria-label="linkedin page">--}}
+{{--                        <i class="fi fi-social-linkedin"></i>--}}
+{{--                    </a>--}}
+
+{{--                    <a href="#!" class="btn btn-sm btn-youtube transition-hover-top mb-2 rounded-circle" rel="noopener" aria-label="youtube page">--}}
+{{--                        <i class="fi fi-social-youtube"></i>--}}
+{{--                    </a>--}}
+
+{{--                </div>--}}
+
+{{--            </div>--}}
 
 
             <div class="col-12 col-md-6 col-lg-8 py-5 fs--15 text-center-xs">

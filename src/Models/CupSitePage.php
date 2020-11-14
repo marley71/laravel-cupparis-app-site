@@ -38,13 +38,13 @@ class CupSitePage extends Breeze
 //        'username' => 'required|between:4,255|unique:users,username',
     ];
 
-    public $columnsForSelectList = ['nome_it'];
+    public $columnsForSelectList = ['titolo_it'];
      //['id','nome_it'];
 
-    public $defaultOrderColumns = ['nome_it' => 'ASC', ];
+    public $defaultOrderColumns = ['id' => 'ASC', ];
      //['cognome' => 'ASC','nome' => 'ASC'];
 
-    public $columnsSearchAutoComplete = ['nome_it'];
+    public $columnsSearchAutoComplete = ['titolo_it'];
      //['cognome','denominazione','codicefiscale','partitaiva'];
 
     public $nItemsAutoComplete = 20;
@@ -52,5 +52,29 @@ class CupSitePage extends Breeze
     public $itemNoneForSelectList = false;
     public $fieldsSeparator = ' - ';
 
+
+
+    public static function getPageTree() {
+        $pages = self::whereNull('cup_site_page_id')->get()->toArray();
+        for($i=0;$i<count($pages);$i++) {
+            $subPages = self::where('cup_site_page_id',$pages[$i]['id'])->get()->toArray();
+            $pages[$i]['children'] = $subPages;
+        }
+        return $pages;
+    }
+
+    /**
+     * Overload model save.
+     *
+     * $name_equals string Assert User's name (Optional)
+     */
+    public function save(array $options = array())
+    {
+        //echo($this->content_id);
+
+        $content = $this->content_it;
+
+        parent::save($options);
+    }
 
 }

@@ -54,12 +54,15 @@ return [
         ],
 
         'pagination' => [
-            //'per_page' => 20,
+            'per_page' => 40,
             'pagination_steps' => [10, 20, 50],
         ],
 
         'fields' => [
             "id" => [
+
+            ],
+            "menu_it" => [
 
             ],
             "titolo_it" => [
@@ -68,6 +71,7 @@ return [
             'attivo' => [
 
             ],
+            'cup_site_page_id' => []
         ],
         'relations' => [
 
@@ -83,15 +87,39 @@ return [
             'id' => [
 
             ],
-            "content_id" => [
+            "content_it" => [
 
             ],
-            "nome_it" => [
+            "titolo_it" => [
 
             ],
-            "attivo" => [
+            "keywords" => [],
+            "menu_it" => [],
+            "attivo" => [],
+            'cup_site_page_id' => []
+        ],
+        'relations' => [
 
-            ]
+        ],
+        'params' => [
+
+        ],
+    ],
+    'insert' => [
+        'fields' => [
+            'id' => [
+
+            ],
+            "content_it" => [
+
+            ],
+            "titolo_it" => [
+
+            ],
+            "keywords" => [],
+            "menu_it" => [],
+            "attivo" => [],
+            'cup_site_page_id' => []
         ],
         'relations' => [
 

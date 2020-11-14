@@ -5,9 +5,13 @@ namespace Marley71\Cupparis\App\Site\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Marley71\Cupparis\App\Site\Models\CupSitePage;
+use Marley71\Cupparis\App\Site\Models\CupSiteSetting;
 
 class CupSiteController extends Controller
 {
+    private $layout = null;
+    private $setting = null;
+    private $menu = null;
     /**
      * Create a new controller instance.
      *
@@ -16,6 +20,13 @@ class CupSiteController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
+        $this->layout = config('cupparis-site.layout');
+        $setting = CupSiteSetting::where('attivo',1)->first();
+        if (!$setting) {
+            $setting = CupSiteSetting::first();
+        }
+        $this->setting = $setting?$setting->toArray():[];
+        $this->menu = $this->_menu();
     }
 
     /**
@@ -23,19 +34,29 @@ class CupSiteController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function page($titolo)
+    public function page($menu=null)
     {
-        $layout = config('cupparis-site.layout');
-        $page = CupSitePage::where('titolo_it',$titolo)->first()->toArray();
-        return view('cup_site.' . $layout .'.pages.index',[
+        $page = null;
+        if (!$menu)
+            $page = CupSitePage::first(); // bisogna prendere l'home
+        else
+            $page = CupSitePage::where('menu_it',$menu)->first()->toArray();
+
+        $page['children'] = CupSitePage::where('cup_site_page_id',$page['id'])->get()->toArray();
+
+        //print_r($this->menu);
+        return view('cup_site.' . $this->layout .'.pages.index',[
             'page'=> $page,
-            'layout' => $layout
+            'layout' => $this->layout,
+            'setting' => $this->setting,
+            'menu' => $this->menu,
+            'route_prefix' => config('cupparis-site.route_prefix')
         ]);
     }
 
-    public function proveVue()
+    public function admin()
     {
-        return view('prove-vue');
+        return view('cup_site.admin.index');
     }
 
     public function manage($model) {
@@ -47,5 +68,9 @@ class CupSiteController extends Controller
     }
     public function inline() {
         return view('inline');
+    }
+
+    protected function _menu() {
+        return CupSitePage::getPageTree();
     }
 }

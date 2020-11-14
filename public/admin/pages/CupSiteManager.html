@@ -1,0 +1,278 @@
+<div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+    <v-list c-conf="pageManager" inline-template>
+        <div>
+            <c-loading v-if="loading"></c-loading>
+            <div v-else >
+                <div class="row">
+                    <div class="col-2">
+<!--                        <div>-->
+<!--                            <button v-on:click="createPage()" type="button" class="btn btn-sm rounded-circle mb-2 btn-success"><i class="fa fa-plus"></i></button>-->
+<!--                            <button v-on:click="renamePage()" type="button" class="btn btn-sm rounded-circle mb-2 btn-dark"><i class="fa fa-edit"></i></button>-->
+<!--                            <button v-on:click="deletePage()" type="button" class="btn btn-sm rounded-circle mb-2 btn-danger"><i class="fa fa-minus"></i></button>-->
+<!--                        </div>-->
+                        <div id="jstree" >
+                            <ul>
+                                <li id="root">
+                                    Pagine sito
+                                    <ul>
+                                        <li :id="row.id" v-for="(row,index) in value">
+                                            {{row.menu_it}}
+                                            <ul v-if="row.children.length > 0">
+                                                <li :id="subitem.id" v-for="(subitem,idx) in row.children">
+                                                    {{subitem.menu_it}}
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-9 offset-1" id="pageEdit">
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </v-list>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+<script>
+    var pageManager = {
+        modelName:'cup_site_page',
+        fields : ['titolo_it'],
+        currentPage : null,
+        methods : {
+            completed  : function () {
+                var that = this;
+                jQuery('#jstree').jstree({
+                    "core" : {
+                        "themes" : {
+                            "variant" : "large"
+                        },
+                        "check_callback": true,
+                        // 'data' : function (obj, callback) {
+                        //     callback.call(this, that.value);
+                        // },
+                        // 'data' : that.value,
+                        // 'data' : {
+                        //     'url' : function (node) {
+                        //         console.log('url',node);
+                        //         return node.id === '#' ? '/foorm/cup_site_page' : '/static/3.3.10/assets/ajax_demo_children.json';
+                        //     },
+                        //     'data' : function (node) {
+                        //         console.log('data ',node)
+                        //         return {
+                        //             'id' : node.id,
+                        //             'text' : node.menu_it
+                        //         };
+                        //     }
+                        // }
+                    },
+                    "types" : {
+                        "#" : {
+                            "max_children" : 100,
+                            "max_depth" : 3,
+                            "valid_children" : ["root"]
+                        },
+                        "root" : {
+                            "icon" : "fa fa-globe",
+                            "valid_children" : ["default"]
+                        },
+                        "default" : {
+                            "icon" : "fa fa-folder",
+                            "valid_children" : ["default","file"]
+                        },
+                        "file" : {
+                            "icon" : "fa fa-file",
+                            "valid_children" : []
+                        },
+                    },
+                    "plugins" : [
+                        "contextmenu", "dnd", "search",
+                        "state", "types", "wholerow"
+                    ]
+                });
+                $('#jstree').on("changed.jstree", function (e, data) {
+                    var sel = data.selected;
+                    if (sel == 'root')
+                        return ;
+                    if (Array.isArray(sel)) {
+                        sel = sel[0];
+                    }
+                    console.log('sel',sel);
+                    if (!sel)
+                        return ;
+                    that.showPage(parseInt(sel));
+                });
+                $('#jstree').on("create_node.jstree", function (e,data) {
+                    console.log('create node',e,data);
+                    var params = {
+                        menu_it : data.node.text,
+                        attivo : 1,
+                        cup_site_page_id : data.parent=='root'?null:data.parent,
+                    };
+                    that.savePage(null,params,function (json) {
+                        if (json.error) {
+                            that.errorDialog(json.msg);
+                            return ;
+                        }
+                        jQuery('#jstree').jstree(true).set_id(data.node, json.result.id);
+                    });
+
+                });
+                $('#jstree').on("rename_node.jstree", function (e,data) {
+                    console.log('rename node',e,data);
+                    var params = {
+                        menu_it : data.text,
+                    };
+                    that.savePage(data.node.id,params);
+                });
+                $('#jstree').on("delete_node.jstree", function (e,data) {
+                    console.log('delete node',e,data);
+                    that.deletePage(data.node.id);
+                    // var params = {
+                    //     menu_it : data.text,
+                    // };
+                    // that.savePage(data.node.id,params);
+                });
+            },
+            createPage() {
+                var that = this;
+                var ref = $('#jstree').jstree(true);
+                var sel = ref.get_selected();
+                console.log('sel',sel)
+                sel = sel[0];
+
+
+                var r = that.createRoute('create');
+                r.setValues({
+                    modelName : 'cup_site_page',
+                });
+                var params = {
+                    menu_it : 'new page' + Math.floor(Math.random()*100000),
+                    attivo : 1,
+                };
+
+                if (sel != 'root') {
+                    params['cup_site_page_id'] = sel;
+
+                }
+                r.setParams(params);
+
+                Server.route(r,function (json) {
+                    if (json.error) {
+                        that.errorDialog(json.msg);
+                        return ;
+                    }
+                    var node = {
+                        id : json.result.id,
+                        text : json.result.menu_it
+                    };
+                    node.type = sel=='root'?'folder':'file';
+
+                    sel = ref.create_node(sel,node);
+                    console.log('nodo creato',sel,node);
+                })
+            },
+            showPage(pk) {
+                var that = this;
+                if (that.currentPage) {
+                    that.currentPage.$destroy();
+                }
+                var htmlId = 'pageEdit';
+                pageEdit.pk = pk;
+                var componente = new that.$options.components['v-edit']({
+                    propsData : {
+                        cConf : pageEdit,
+                    },
+                    ref : 'page'
+                });
+                var id= 'd' + (new Date().getTime());
+                jQuery('#'+htmlId).html('<div id="'+id+'" ></div>');
+                componente.$mount('#'+id);
+                that.currentPage = componente;
+            },
+            deletePage(id) {
+                var that = this;
+                if (id == 'root')
+                    return ;
+                var r = that.createRoute('delete');
+                r.setValues({
+                    modelName : 'cup_site_page',
+                });
+                r.setParams({
+                    id : id,
+                })
+                Server.route(r,function (json){
+                    if (json.error) {
+                        that.errorDialog(json.msg);
+                        return ;
+                    }
+                    //that.reload();
+                })
+            },
+            savePage(id,params,callback) {
+                var that = this;
+                var _cb = callback?callback:function (json) {
+                        if (json.error) {
+                            that.errorDialog(json.msg);
+                            return ;
+                        }
+                }
+                var r = id?that.createRoute('update'):that.createRoute('create');
+                var values = {
+                    modelName : 'cup_site_page',
+                };
+                if (id)
+                    values.pk = id;
+                r.setValues(values);
+                r.setParams(params);
+                Server.route(r,_cb);
+
+                // Server.route(r,function (json) {
+                //     if (json.error) {
+                //         that.errorDialog(json.msg);
+                //         return ;
+                //     }
+                //     // var node = {
+                //     //     id : json.result.id,
+                //     //     text : json.result.menu_it
+                //     // };
+                //     // node.type = sel=='root'?'folder':'file';
+                //     //
+                //     // sel = ref.create_node(sel,node);
+                //     // console.log('nodo creato',sel,node);
+                // })
+            }
+        }
+    }
+
+    var pageEdit = {
+        modelName: 'cup_site_page',
+        actions : ['action-save'],
+        fieldsConfig : {
+            content_it : {
+                type : 'w-texthtml',
+                template : 'tpl-no'
+            },
+            keywords : {
+                type: 'w-textarea',
+                template: 'tpl-no'
+            },
+            attivo : {
+                type : 'w-radio',
+                domainValues : {
+                    0 : 'non attivo',
+                    1 : 'attivo'
+                }
+            }
+        }
+    }
+</script>

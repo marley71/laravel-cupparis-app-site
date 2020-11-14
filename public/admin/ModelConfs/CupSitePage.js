@@ -17,7 +17,7 @@ var ModelCupSitePage = {
     //     }
     // },
     list: {
-        modelName : 'cup_page',
+        modelName : 'cup_site_page',
         fields : ['codice','nome_it','attivo'],
         actions : ['action-edit','action-delete','action-insert',
             'action-export-csv'
@@ -39,7 +39,7 @@ var ModelCupSitePage = {
         }
     },
     edit: {
-        modelName : 'cup_page',
+        modelName : 'cup_site_page',
         actions : ['action-save','action-back'],
         fields : ['codice','nome_it',
             //'comuni'
