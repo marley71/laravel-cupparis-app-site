@@ -4,6 +4,7 @@ namespace Marley71\Cupparis\App\Site\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Marley71\Cupparis\App\Site\Models\CupSitePage;
 use Marley71\Cupparis\App\Site\Models\CupSiteSetting;
 
@@ -40,9 +41,12 @@ class CupSiteController extends Controller
         if (!$menu)
             $page = CupSitePage::first(); // bisogna prendere l'home
         else
-            $page = CupSitePage::where('menu_it',$menu)->first()->toArray();
+            $page = CupSitePage::where('menu_it',$menu)->first();
 
-        $page['children'] = CupSitePage::where('cup_site_page_id',$page['id'])->get()->toArray();
+        $page = $page?$page->toArray():[];
+        $children = CupSitePage::where('cup_site_page_id',Arr::get($page,'id',0))->get();
+        $children = $children?$children->toArray():[];
+        $page['children'] = $children;
 
         //print_r($this->menu);
         return view('cup_site.' . $this->layout .'.pages.index',[

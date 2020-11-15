@@ -35,6 +35,7 @@
   "datafile-providers": [
   ],
   "pages": [
+      "CupSiteManager.html"
   ],
   "config": [
       "cupparis-site"

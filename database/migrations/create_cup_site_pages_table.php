@@ -17,9 +17,9 @@ class CreateCupSitePagesTable extends Migration
     {
         Schema::create('cup_site_pages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('menu_it')->nullable();
+            $table->string('menu_it')->unique()->nullable();
             $table->string('titolo_it')->nullable();
-            $table->text('content_it')->nullable();
+            $table->longText('content_it')->nullable();
             $table->text('keywords')->nullable();
             $table->boolean('attivo')->default(1);// varchar(50) DEFAULT NULL,
             $table->integer('ordine')->default(0);

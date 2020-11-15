@@ -18,7 +18,7 @@ class CupSiteServiceProvider extends ServiceProvider
 
         //Publishing configs
         $this->publishes([
-            //__DIR__ . '/../config/cupparis-app-geografiche.php' => config_path('cupparis-app-geografiche.php'),
+            __DIR__ . '/../config/cupparis-site.php' => config_path('cupparis-site.php'),
             __DIR__ . '/../config/foorms' => config_path('foorms'),
         ], 'config');
 
@@ -33,7 +33,7 @@ class CupSiteServiceProvider extends ServiceProvider
 
         //Publishing and overwriting app folders
         $this->publishes([
-            __DIR__ . '/../app/Foorm/CupSitePage' => app_path('Foorm'),
+            __DIR__ . '/../app/Foorm/CupSitePage' => app_path('Foorm/CupSitePage'),
             __DIR__ . '/../app/Models' => app_path('Models'),
             //__DIR__ . '/../app/Models/Relations' => app_path('Models/Relations'),
             __DIR__ . '/../app/Policies' => app_path('Policies'),
@@ -94,7 +94,7 @@ class CupSiteServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../public/admin/ModelConfs' => public_path('admin/ModelConfs'),
             __DIR__ . '/../public/cup_site' => public_path('cup_site'),
-            //__DIR__ . '/../public/admin/pages' => public_path('admin/pages'),
+            __DIR__ . '/../public/admin/pages' => public_path('admin/pages'),
         ], 'public');
 
         $this->publishes([

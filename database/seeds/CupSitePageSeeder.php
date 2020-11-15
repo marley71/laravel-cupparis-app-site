@@ -19,17 +19,20 @@ class CupSitePageSeeder extends Seeder
 
 
         CupSitePage::create([
-           'titolo_it' => 'pagina1',
+           'titolo_it' => 'Titolo pagina1',
+            'menu_it' => 'pagina1',
            'content_it' => 'contenuto1'
         ]);
 
         CupSitePage::create([
-            'titolo_it' => 'pagina2',
+            'titolo_it' => 'Titolo pagina2',
+            'menu_it' => 'pagina2',
             'content_it' => 'contenuto2'
         ]);
 
         CupSitePage::create([
-            'titolo_it' => 'pagina3',
+            'titolo_it' => 'Titolo pagina3',
+            'menu_it' => 'pagina3',
             'content_it' => 'contenuto3'
         ]);
 
