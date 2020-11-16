@@ -89,6 +89,9 @@ return [
             "properties" => [
 
             ],
+            "default_properties" => [
+
+            ],
             "attivo" => [
 
             ]

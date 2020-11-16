@@ -60,20 +60,21 @@ class CupSiteController extends Controller
 
     public function admin()
     {
+        $this->middleware('auth');
         return view('cup_site.admin.index');
     }
 
-    public function manage($model) {
-        return view('manage',['model' => $model]);
-    }
-
-    public function dashboard() {
-        return view('dashboard');
-    }
-    public function inline() {
-        return view('inline');
-    }
-
+//    public function manage($model) {
+//        return view('manage',['model' => $model]);
+//    }
+//
+//    public function dashboard() {
+//        return view('dashboard');
+//    }
+//    public function inline() {
+//        return view('inline');
+//    }
+//
     protected function _menu() {
         return CupSitePage::getPageTree();
     }

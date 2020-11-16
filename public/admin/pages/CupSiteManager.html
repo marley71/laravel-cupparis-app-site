@@ -6,11 +6,7 @@
             <div v-else >
                 <div class="row">
                     <div class="col-2">
-<!--                        <div>-->
-<!--                            <button v-on:click="createPage()" type="button" class="btn btn-sm rounded-circle mb-2 btn-success"><i class="fa fa-plus"></i></button>-->
-<!--                            <button v-on:click="renamePage()" type="button" class="btn btn-sm rounded-circle mb-2 btn-dark"><i class="fa fa-edit"></i></button>-->
-<!--                            <button v-on:click="deletePage()" type="button" class="btn btn-sm rounded-circle mb-2 btn-danger"><i class="fa fa-minus"></i></button>-->
-<!--                        </div>-->
+                        <div><a href="/dashboard">Dashboard</a></div>
                         <div id="jstree" >
                             <ul>
                                 <li id="root">
@@ -31,8 +27,9 @@
 
                             </ul>
                         </div>
+                        <div><a href="javascript:history.location" v-on:click="showSetting()">Impostazioni Sito</a></div>
                     </div>
-                    <div class="col-9 offset-1" id="pageEdit">
+                    <div class="col-9 offset-1" id="areaEdit">
 
                     </div>
                 </div>
@@ -48,6 +45,7 @@
         modelName:'cup_site_page',
         fields : ['titolo_it'],
         currentPage : null,
+        settings : null,
         methods : {
             completed  : function () {
                 var that = this;
@@ -94,12 +92,20 @@
                             "valid_children" : []
                         },
                     },
+                    "contextmenu":{
+                        'items' : function(node) {
+                            var items = $.jstree.defaults.contextmenu.items();
+                            items.ccp = false;
+
+                            return items;
+                        }
+                    },
                     "plugins" : [
                         "contextmenu", "dnd", "search",
-                        "state", "types", "wholerow"
+                        "types", "wholerow" // "state"
                     ]
                 });
-                $('#jstree').on("changed.jstree", function (e, data) {
+                jQuery('#jstree').on("changed.jstree", function (e, data) {
                     var sel = data.selected;
                     if (sel == 'root')
                         return ;
@@ -137,11 +143,17 @@
                 $('#jstree').on("delete_node.jstree", function (e,data) {
                     console.log('delete node',e,data);
                     that.deletePage(data.node.id);
-                    // var params = {
-                    //     menu_it : data.text,
-                    // };
-                    // that.savePage(data.node.id,params);
                 });
+                $('#jstree').on("dnd_stop.vakata", function (e,data) {
+                    console.log('dnd_stop',data);
+                    //that.deletePage(data.node.id);
+                });
+                $('#jstree').on("move_node.jstree", function (e,data) {
+                    console.log('dnd_stop2',data);
+                    that.updateParentPage(data.node.id,data.parent);
+                    //that.deletePage(data.node.id);
+                });
+                //that.showSetting();
             },
             createPage() {
                 var that = this;
@@ -186,7 +198,7 @@
                 if (that.currentPage) {
                     that.currentPage.$destroy();
                 }
-                var htmlId = 'pageEdit';
+                var htmlId = 'areaEdit';
                 pageEdit.pk = pk;
                 var componente = new that.$options.components['v-edit']({
                     propsData : {
@@ -198,6 +210,24 @@
                 jQuery('#'+htmlId).html('<div id="'+id+'" ></div>');
                 componente.$mount('#'+id);
                 that.currentPage = componente;
+            },
+            showSetting : function () {
+                var that = this;
+                if (that.settings) {
+                    that.settings.$destroy();
+                }
+                var htmlId = 'areaEdit';
+                //settingsEdit.pk = pk;
+                var componente = new that.$options.components['v-edit']({
+                    propsData : {
+                        cConf : settingsEdit,
+                    },
+                    ref : 'setting'
+                });
+                var id= 'd' + (new Date().getTime());
+                jQuery('#'+htmlId).html('<div id="'+id+'" ></div>');
+                componente.$mount('#'+id);
+                that.settings = componente;
             },
             deletePage(id) {
                 var that = this;
@@ -235,21 +265,15 @@
                 r.setValues(values);
                 r.setParams(params);
                 Server.route(r,_cb);
-
-                // Server.route(r,function (json) {
-                //     if (json.error) {
-                //         that.errorDialog(json.msg);
-                //         return ;
-                //     }
-                //     // var node = {
-                //     //     id : json.result.id,
-                //     //     text : json.result.menu_it
-                //     // };
-                //     // node.type = sel=='root'?'folder':'file';
-                //     //
-                //     // sel = ref.create_node(sel,node);
-                //     // console.log('nodo creato',sel,node);
-                // })
+            },
+            updateParentPage : function (pageId,parentId) {
+                var that = this;
+                var params = {};
+                params.cup_site_page_id = parentId;
+                if (parentId == 'root') {
+                    params.cup_site_page_id = null;
+                }
+                that.savePage(pageId,params);
             }
         }
     }
@@ -271,6 +295,33 @@
                 domainValues : {
                     0 : 'non attivo',
                     1 : 'attivo'
+                }
+            }
+        }
+    }
+    var settingsEdit = {
+        modelName : 'cup_site_setting',
+        pk : 1,
+        fields : ['logo','properties'],
+        fieldsConfig: {
+            logo : {
+                type : 'w-upload',
+                uploadType : 'image'
+            },
+            properties : {
+                type : 'w-hasone-real',
+                template : 'tpl-full-no',
+                viewConf : {
+                    fieldsConfig : {
+                        slider1 : {
+                            type : 'w-select',
+                            domainValues : {
+                                '' : 'Nessuno',
+                                '1' : 'Si',
+                            }
+                        }
+                    }
+
                 }
             }
         }

@@ -11,7 +11,9 @@ class FoormEdit extends BaseFoormEdit
 {
 
     public function finalizeData($finalizationFunc = null) {
-        
+        if (!$this->formData['properties']) {
+            $this->formData['properties'] = json_decode($this->formData['default_properties'],true);
+        }
 //        if (is_array($this->formData['mainrole'])) {
 //            $this->formData['mainrole'] = $this->formData['mainrole']['id'];
 //        }
