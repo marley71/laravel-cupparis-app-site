@@ -62,9 +62,6 @@ return [
             "id" => [
 
             ],
-            "menu_it" => [
-
-            ],
             "titolo_it" => [
 
             ],
@@ -87,13 +84,14 @@ return [
 
     'edit' => [
         'fields' => [
-            'id' => [],
-            "menu_it" => [],
+            'id' => [
+
+            ],
+            "descrizione_it" => [],
             "titolo_it" => [],
-            "content_it" => [],
-            "keywords" => [],
+            'data' => [],
             "attivo" => [],
-            'cup_site_page_id' => []
+            //'cup_site_page_id' => []
         ],
         'relations' => [
 
@@ -104,13 +102,16 @@ return [
     ],
     'insert' => [
         'fields' => [
-            'id' => [],
-            "menu_it" => [],
-            "titolo_it" => [],
-            "content_it" => [],
-            "keywords" => [],
+            'id' => [
+
+            ],
+            "descrizione_it" => [],
+            "titolo_it" => [
+
+            ],
             "attivo" => [],
-            'cup_site_page_id' => []
+            'data' => [],
+            //'cup_site_page_id' => []
         ],
         'relations' => [
 

@@ -41,14 +41,22 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 <script>
+    app.loadResources([
+        '/cup_site/components/templates/c-site-page.html',
+        '/cup_site/components/js/c-site-page.js',
+    ])
     var pageManager = {
         modelName:'cup_site_page',
         fields : ['titolo_it'],
         currentPage : null,
         settings : null,
+        pagesType : {},
         methods : {
             completed  : function () {
                 var that = this;
+                for (var i in that.value) {
+                    that.pagesType[that.value[i].id] = that.value[i].type;
+                }
                 jQuery('#jstree').jstree({
                     "core" : {
                         "themes" : {
@@ -102,7 +110,7 @@
                     },
                     "plugins" : [
                         "contextmenu", "dnd", "search",
-                        "types", "wholerow" // "state"
+                        "types", "wholerow", "state"
                     ]
                 });
                 jQuery('#jstree').on("changed.jstree", function (e, data) {
@@ -194,22 +202,47 @@
                 })
             },
             showPage(pk) {
+
                 var that = this;
                 if (that.currentPage) {
                     that.currentPage.$destroy();
                 }
                 var htmlId = 'areaEdit';
-                pageEdit.pk = pk;
-                var componente = new that.$options.components['v-edit']({
+                console.log('page type',pk,that.pagesType[pk],that.pagesType)
+                var componente = new that.$options.components['c-site-page']({
                     propsData : {
-                        cConf : pageEdit,
+                        cConf : {
+                            pk : id,
+                            type : that.pagesType[pk]
+                        },
                     },
-                    ref : 'page'
+                    ref : 'site-page'
                 });
                 var id= 'd' + (new Date().getTime());
                 jQuery('#'+htmlId).html('<div id="'+id+'" ></div>');
                 componente.$mount('#'+id);
                 that.currentPage = componente;
+
+
+
+
+
+                // var that = this;
+                // if (that.currentPage) {
+                //     that.currentPage.$destroy();
+                // }
+                // var htmlId = 'areaEdit';
+                // pageEdit.pk = pk;
+                // var componente = new that.$options.components['v-edit']({
+                //     propsData : {
+                //         cConf : pageEdit,
+                //     },
+                //     ref : 'page'
+                // });
+                // var id= 'd' + (new Date().getTime());
+                // jQuery('#'+htmlId).html('<div id="'+id+'" ></div>');
+                // componente.$mount('#'+id);
+                // that.currentPage = componente;
             },
             showSetting : function () {
                 var that = this;
@@ -278,27 +311,27 @@
         }
     }
 
-    var pageEdit = {
-        modelName: 'cup_site_page',
-        actions : ['action-save'],
-        fieldsConfig : {
-            content_it : {
-                type : 'w-texthtml',
-                template : 'tpl-no'
-            },
-            keywords : {
-                type: 'w-textarea',
-                template: 'tpl-no'
-            },
-            attivo : {
-                type : 'w-radio',
-                domainValues : {
-                    0 : 'non attivo',
-                    1 : 'attivo'
-                }
-            }
-        }
-    }
+    // var pageEdit = {
+    //     modelName: 'cup_site_page',
+    //     actions : ['action-save'],
+    //     fieldsConfig : {
+    //         content_it : {
+    //             type : 'w-texthtml',
+    //             template : 'tpl-no'
+    //         },
+    //         keywords : {
+    //             type: 'w-textarea',
+    //             template: 'tpl-no'
+    //         },
+    //         attivo : {
+    //             type : 'w-radio',
+    //             domainValues : {
+    //                 0 : 'non attivo',
+    //                 1 : 'attivo'
+    //             }
+    //         }
+    //     }
+    // }
     var settingsEdit = {
         modelName : 'cup_site_setting',
         pk : 1,

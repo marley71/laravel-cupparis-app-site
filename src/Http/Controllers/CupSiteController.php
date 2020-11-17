@@ -3,6 +3,7 @@
 namespace Marley71\Cupparis\App\Site\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\CupSiteNews;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Marley71\Cupparis\App\Site\Models\CupSitePage;
@@ -42,20 +43,34 @@ class CupSiteController extends Controller
             $page = CupSitePage::first(); // bisogna prendere l'home
         else
             $page = CupSitePage::where('menu_it',$menu)->first();
-
         $page = $page?$page->toArray():[];
         $children = CupSitePage::where('cup_site_page_id',Arr::get($page,'id',0))->get();
         $children = $children?$children->toArray():[];
         $page['children'] = $children;
+        switch (Arr::get($page,'type')) {
+            case 'html':
+                //print_r($this->menu);
+                return view('cup_site.' . $this->layout .'.pages.index',[
+                    'page'=> $page,
+                    'layout' => $this->layout,
+                    'setting' => $this->setting,
+                    'menu' => $this->menu,
+                    'route_prefix' => config('cupparis-site.route_prefix')
+                ]);
+            case 'news':
+                $news = CupSiteNews::get()->toArray();
+                return view('cup_site.' . $this->layout .'.pages.news',[
+                    'page'=> $page,
+                    'news'=> $news,
+                    'layout' => $this->layout,
+                    'setting' => $this->setting,
+                    'menu' => $this->menu,
+                    'route_prefix' => config('cupparis-site.route_prefix')
+                ]);
+                break;
+        }
 
-        //print_r($this->menu);
-        return view('cup_site.' . $this->layout .'.pages.index',[
-            'page'=> $page,
-            'layout' => $this->layout,
-            'setting' => $this->setting,
-            'menu' => $this->menu,
-            'route_prefix' => config('cupparis-site.route_prefix')
-        ]);
+        abort(404);
     }
 
     public function admin()

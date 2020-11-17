@@ -40,10 +40,25 @@ var ModelCupSitePage = {
     },
     edit: {
         modelName : 'cup_site_page',
-        actions : ['action-save','action-back'],
-        fields : ['codice','nome_it',
-            //'comuni'
-        ],
+        actions : ['action-save'],
+        fieldsConfig : {
+            cup_site_page_id : 'w-hidden',
+            content_it : {
+                type : 'w-texthtml',
+                template : 'tpl-no'
+            },
+            keywords : {
+                type: 'w-textarea',
+                template: 'tpl-no'
+            },
+            attivo : {
+                type : 'w-radio',
+                domainValues : {
+                    0 : 'non attivo',
+                    1 : 'attivo'
+                }
+            }
+        }
     },
 
 }

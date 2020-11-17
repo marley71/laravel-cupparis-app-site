@@ -57,11 +57,11 @@ class CupSiteServiceProvider extends ServiceProvider
                 $this->publishes([
                     __DIR__ . '/../database/migrations/create_cup_site_pages_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-99) . '_create_cup_site_pages_table.php'),
                     __DIR__ . '/../database/migrations/create_cup_site_settings_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-98) . '_create_cup_site_settings_table.php'),
-//                    __DIR__ . '/../database/migrations/create_cup_geo_nazioni_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-97) . '_create_cup_geo_nazioni_table.php'),
-//                    __DIR__ . '/../database/migrations/create_cup_geo_aree_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-96) . '_create_cup_geo_aree_table.php'),
-//                    __DIR__ . '/../database/migrations/create_cup_geo_regioni_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-95) . '_create_cup_geo_regioni_table.php'),
-//                    __DIR__ . '/../database/migrations/create_cup_geo_province_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-94) . '_create_cup_geo_province_table.php'),
-//                    __DIR__ . '/../database/migrations/create_cup_geo_comuni_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-93) . '_create_cup_geo_comuni_table.php'),
+                    __DIR__ . '/../database/migrations/create_cup_site_news_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-97) . '_create_cup_site_news_table.php'),
+                    __DIR__ . '/../database/migrations/create_cup_site_news_foto_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-96) . '_create_cup_site_news_foto_table.php'),
+                    __DIR__ . '/../database/migrations/create_cup_site_news_attachment_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-95) . '_create_cup_site_news_attachment_table.php'),
+                    __DIR__ . '/../database/migrations/create_cup_site_news_video_table.php' => database_path('migrations/' . date('Y_m_d_His', time()-94) . '_create_cup_site_news_video_table.php'),
+
                     // you can add any number of migrations here
                 ], 'migrations');
             }

@@ -8,7 +8,8 @@
   "modelconfs": {
     "files": [
       "CupSitePage.js",
-        "CupSiteSetting.js"
+        "CupSiteSetting.js",
+        "CupSiteNews.js"
     ]
   },
   "permissions": {
