@@ -2,6 +2,7 @@
 
 namespace Marley71\Cupparis\App\Site\Models;
 
+use App\Models\CupSiteFoto;
 use Gecche\Cupparis\App\Breeze\Breeze;
 use PHPHtmlParser\Dom;
 
@@ -27,7 +28,7 @@ class CupSiteNews extends Breeze
 
 
     public static $relationsData = [
-        'fotos' => [self::HAS_MANY, 'related' => CupSiteFoto::class, 'name' => 'mediable'],
+        'fotos' => [self::MORPH_MANY, 'related' => CupSiteFoto::class, 'name' => 'mediable'],
         //'attachments' => [self::HAS_MANY, 'related' => CupSiteFoto::class, 'name' => 'mediable'],
 
 

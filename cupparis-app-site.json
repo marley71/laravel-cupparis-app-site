@@ -29,7 +29,7 @@
     }
   },
   "models": [
-    "CupSitePage","CupSiteSetting"
+    "CupSitePage","CupSiteSetting","CupSiteFoto","CupSiteAttachment","CupSiteVideo","CupSiteNews"
   ],
   "datafile-models": [
   ],

@@ -8,6 +8,7 @@ composer dump-autoload
 php artisan install-cupparis-package cupparis-app-site
 php artisan migrate
 php artisan db:seed --class=CupSiteSeeder
+php7.2 artisan breeze:relations CupSiteNews
 
 ```
 
@@ -22,5 +23,6 @@ rm -rf public/cup_site
 rm -rf resources/views/cup_site
 rm -f app/Http/Controllers/CupSiteController.php
 rm -rf app/Foorm/CupSitePage
+rm -f app/Models/Relations/CupSite*
 
 ```  

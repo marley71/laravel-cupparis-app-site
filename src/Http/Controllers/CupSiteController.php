@@ -50,12 +50,12 @@ class CupSiteController extends Controller
         switch (Arr::get($page,'type')) {
             case 'html':
                 //print_r($this->menu);
-                return view('cup_site.' . $this->layout .'.pages.index',[
+                return view('cup_site.' . $this->layout .'.pages.html',[
                     'page'=> $page,
                     'layout' => $this->layout,
                     'setting' => $this->setting,
                     'menu' => $this->menu,
-                    'route_prefix' => config('cupparis-site.route_prefix')
+                    'route_prefix' => config('cupparis-site.route_prefix'),
                 ]);
             case 'news':
                 $news = CupSiteNews::get()->toArray();
@@ -65,7 +65,7 @@ class CupSiteController extends Controller
                     'layout' => $this->layout,
                     'setting' => $this->setting,
                     'menu' => $this->menu,
-                    'route_prefix' => config('cupparis-site.route_prefix')
+                    'route_prefix' => config('cupparis-site.route_prefix'),
                 ]);
                 break;
         }

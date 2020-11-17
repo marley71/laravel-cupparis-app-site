@@ -94,7 +94,14 @@ return [
             //'cup_site_page_id' => []
         ],
         'relations' => [
-
+            "fotos" => [
+                "fields" => [
+                    'nome_it' => [],
+                    'descrizione_it' => [],
+                    'resource' => [],
+                    'ordine' => [],
+                ]
+            ],
         ],
         'params' => [
 

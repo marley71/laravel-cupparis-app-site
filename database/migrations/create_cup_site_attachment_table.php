@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Gecche\Breeze\Database\Schema\Blueprint;
 
-class CreateCupSiteNewsFotoTable extends Migration {
+class CreateCupSiteAttachmentTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,7 +12,7 @@ class CreateCupSiteNewsFotoTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('cup_site_news_fotos', function(Blueprint $table)
+		Schema::create('cup_site_attachments', function(Blueprint $table)
 		{
 			$table->increments('id');
             $table->string('nome_it')->nullable();
@@ -22,13 +22,13 @@ class CreateCupSiteNewsFotoTable extends Migration {
 //            $table->text('descrizione_en')->nullable();
 //            $table->string('nome_es')->nullable();
 //            $table->text('descrizione_es')->nullable();
+            $table->boolean('reserved')->nullable();
             $table->integer('ordine')->unsigned()->default(0);
-            $table->integer('cup_site_news_id')->unsigned()->index();
-            $table->foreign('cup_site_news_id')->references('id')->on('cup_site_news')->onDelete('cascade');
+            $table->string('mediable_type')->nullable();
+            $table->integer('mediable_id')->unsigned()->nullable();
             $table->timestamps();
             $table->nullableOwnerships();
-
-			//$table->timestamps();
+            $table->unique(['mediable_type','mediable_id','ordine']);
 		});
 	}
 
@@ -40,7 +40,7 @@ class CreateCupSiteNewsFotoTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('cup_site_news_fotos');
+		Schema::drop('cup_site_attachments');
 	}
 
 }
