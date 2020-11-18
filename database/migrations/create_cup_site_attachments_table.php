@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Gecche\Breeze\Database\Schema\Blueprint;
 
-class CreateCupSiteVideoTable extends Migration {
+class CreateCupSiteAttachmentsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,18 @@ class CreateCupSiteVideoTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('cup_site_videos', function(Blueprint $table)
+		Schema::create('cup_site_attachments', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('link');
             $table->string('nome_it')->nullable();
+            $table->string('ext', 6);
             $table->text('descrizione_it')->nullable();
-			$table->enum('type',['youtube'])->default('youtube');
-			$table->integer('ordine')->unsigned()->default(0);
+//            $table->string('nome_en')->nullable();
+//            $table->text('descrizione_en')->nullable();
+//            $table->string('nome_es')->nullable();
+//            $table->text('descrizione_es')->nullable();
+            $table->boolean('reserved')->nullable();
+            $table->integer('ordine')->unsigned()->default(0);
             $table->string('mediable_type')->nullable();
             $table->integer('mediable_id')->unsigned()->nullable();
             $table->timestamps();
@@ -36,7 +40,7 @@ class CreateCupSiteVideoTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('cup_site_videos');
+		Schema::drop('cup_site_attachments');
 	}
 
 }

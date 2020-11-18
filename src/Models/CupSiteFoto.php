@@ -5,7 +5,7 @@ use Gecche\Cupparis\App\Breeze\Breeze;
 use Gecche\Cupparis\App\Models\FotoTrait;
 use Gecche\Cupparis\App\Models\UploadableTraits;
 
-class CupSiteNewsFoto extends Breeze
+class CupSiteFoto extends Breeze
 {
     use UploadableTraits;
     use FotoTrait;

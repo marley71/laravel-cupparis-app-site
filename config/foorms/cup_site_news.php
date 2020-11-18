@@ -62,15 +62,16 @@ return [
             "id" => [
 
             ],
+            "data" => [
+
+            ],
             "titolo_it" => [
 
             ],
             'attivo' => [
 
             ],
-            'type' => [
-
-            ],
+            "tag" => [],
             'cup_site_page_id' => []
         ],
         'relations' => [
@@ -89,6 +90,7 @@ return [
             ],
             "descrizione_it" => [],
             "titolo_it" => [],
+            "tag" => [],
             'data' => [],
             "attivo" => [],
             //'cup_site_page_id' => []
@@ -100,33 +102,39 @@ return [
                     'descrizione_it' => [],
                     'resource' => [],
                     'ordine' => [],
-                ]
+                ],
+                'orderKey' => 'ordine',
+
+                'beforeNewCallbackMethods' => ['setFieldsFromResource'],
+                'beforeUpdateCallbackMethods' => ['setFieldsFromResource'],
+                'afterNewCallbackMethods' => ['filesOps'],
+                'afterUpdateCallbackMethods' => ['filesOps'],
             ],
         ],
         'params' => [
 
         ],
     ],
-    'insert' => [
-        'fields' => [
-            'id' => [
-
-            ],
-            "descrizione_it" => [],
-            "titolo_it" => [
-
-            ],
-            "attivo" => [],
-            'data' => [],
-            //'cup_site_page_id' => []
-        ],
-        'relations' => [
-
-        ],
-        'params' => [
-
-        ],
-    ],
+//    'insert' => [
+//        'fields' => [
+//            'id' => [
+//
+//            ],
+//            "descrizione_it" => [],
+//            "titolo_it" => [
+//
+//            ],
+//            "attivo" => [],
+//            'data' => [],
+//            //'cup_site_page_id' => []
+//        ],
+//        'relations' => [
+//
+//        ],
+//        'params' => [
+//
+//        ],
+//    ],
 //    'insert' => [
 //
 //    ],

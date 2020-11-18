@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Gecche\Breeze\Database\Schema\Blueprint;
 
-class CreateCupSiteFotoTable extends Migration {
+class CreateCupSiteFotosTable extends Migration {
 
 	/**
 	 * Run the migrations.

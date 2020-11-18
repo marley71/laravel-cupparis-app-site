@@ -55,4 +55,14 @@ class CupSiteNews extends Breeze
     public $itemNoneForSelectList = false;
     public $fieldsSeparator = ' - ';
 
+    public function save(array $options = array())
+    {
+        //echo($this->content_id);
+        if (!$this->getKey()) {
+            $this->menu_it = 'new' . rand();
+            parent::save($options);
+        }
+        $this->menu_it = $this->getKey() . "-" . str_replace(' ','-',$this->titolo_it);
+        return parent::save($options);
+    }
 }

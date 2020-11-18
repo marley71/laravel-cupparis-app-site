@@ -67,12 +67,26 @@ class CupSiteController extends Controller
                     'menu' => $this->menu,
                     'route_prefix' => config('cupparis-site.route_prefix'),
                 ]);
-                break;
         }
 
         abort(404);
     }
 
+    public function news($menu) {
+        $item = CupSiteNews::where('menu_it',$menu)->first();
+        $item = $item?$item->toArray():[];
+        $page = CupSitePage::where('menu_it',$item['tag'])->first();
+        $page = $page?$page->toArray():[];
+        $page['children'] = [];
+        return view('cup_site.' . $this->layout .'.pages.news_dettaglio',[
+            'page'=> $page,
+            'item'=> $item,
+            'layout' => $this->layout,
+            'setting' => $this->setting,
+            'menu' => $this->menu,
+            'route_prefix' => config('cupparis-site.route_prefix'),
+        ]);
+    }
     public function admin()
     {
         $this->middleware('auth');

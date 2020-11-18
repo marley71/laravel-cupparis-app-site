@@ -1,7 +1,18 @@
 var ModelCupSiteNews = {
+    list : {
+        fields : ['data','titolo_it','attivo'],
+        fieldsConfig : {
+            data : 'w-date-text',
+            attivo : {
+                type : 'w-swap-smarty',
+                modelName: 'cup_site_news'
+            }
+        }
+    },
     edit : {
         fieldsConfig : {
             data : 'w-date-picker',
+            attivo : 'w-select',
             fotos : {
                 type :'w-hasmany',
                 template : 'tpl-full-no',
