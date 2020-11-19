@@ -4,8 +4,10 @@ namespace Marley71\Cupparis\App\Site\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\CupSiteNews;
+use Gecche\Foorm\Facades\Foorm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Marley71\Cupparis\App\Site\Models\CupSitePage;
 use Marley71\Cupparis\App\Site\Models\CupSiteSetting;
 
@@ -74,13 +76,19 @@ class CupSiteController extends Controller
 
     public function news($menu) {
         $item = CupSiteNews::where('menu_it',$menu)->first();
+        if (!$item)
+            abort(404);
+
+        $newsForm = Foorm::getFoorm('cup_site_news.web',request(),['id' => $item['id']]);
+        $pageForm = Foorm::getFoorm('cup_site_page.web',request(),['id' => $item['cup_site_page_id']]);
+
         $item = $item?$item->toArray():[];
         $page = CupSitePage::where('menu_it',$item['tag'])->first();
         $page = $page?$page->toArray():[];
         $page['children'] = [];
         return view('cup_site.' . $this->layout .'.pages.news_dettaglio',[
-            'page'=> $page,
-            'item'=> $item,
+            'page'=> $pageForm->getFormData(),
+            'news'=> $newsForm->getFormData(),
             'layout' => $this->layout,
             'setting' => $this->setting,
             'menu' => $this->menu,

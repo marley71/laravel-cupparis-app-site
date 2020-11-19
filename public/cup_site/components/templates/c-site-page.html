@@ -10,10 +10,10 @@
         </div>
 
         <div v-if="type=='html'">
-            <v-edit c-model="cup_site_page" :c-pk="pk"></v-edit>
+            <v-edit :c-comp-ref="paginaRef" c-model="cup_site_page" :c-pk="pk"></v-edit>
         </div>
         <template v-if="type=='news'">
-            <c-manage c-model="cup_site_news"></c-manage>
+            <c-manage :c-comp-ref="newsManageRef" c-conf="ManageCupSiteNews"></c-manage>
         </template>
 <!--        <div v-if="type=='html'"></div>-->
 <!--        <div v-if="type=='html'"></div>-->

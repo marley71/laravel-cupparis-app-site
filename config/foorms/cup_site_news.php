@@ -91,8 +91,12 @@ return [
             "descrizione_it" => [],
             "titolo_it" => [],
             "tag" => [],
-            'data' => [],
-            "attivo" => [],
+            'data' => [
+                'default' => date('Y-m-d'),
+            ],
+            "attivo" => [
+                'default' => 0
+            ],
             //'cup_site_page_id' => []
         ],
         'relations' => [
@@ -138,5 +142,34 @@ return [
 //    'insert' => [
 //
 //    ],
+    'web' => [
+        'fields' => [
+            'id' => [],
+            "descrizione_it" => [],
+            "titolo_it" => [],
+            "tag" => [],
+            'data' => [],
+            "attivo" => [],
+            //'cup_site_page_id' => []
+        ],
+        'relations' => [
+            "fotos" => [
+                "fields" => [
+                    'nome_it' => [],
+                    'descrizione_it' => [],
+                    'resource' => [],
+                    'ordine' => [],
+                ],
+                'orderKey' => 'ordine',
 
+                'beforeNewCallbackMethods' => ['setFieldsFromResource'],
+                'beforeUpdateCallbackMethods' => ['setFieldsFromResource'],
+                'afterNewCallbackMethods' => ['filesOps'],
+                'afterUpdateCallbackMethods' => ['filesOps'],
+            ],
+        ],
+        'params' => [
+
+        ],
+    ],
 ];

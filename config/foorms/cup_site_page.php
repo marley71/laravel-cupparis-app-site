@@ -88,11 +88,14 @@ return [
     'edit' => [
         'fields' => [
             'id' => [],
+            "type" => [],
             "menu_it" => [],
             "titolo_it" => [],
             "content_it" => [],
             "keywords" => [],
-            "attivo" => [],
+            "attivo" => [
+                'default' => 0
+            ],
             'cup_site_page_id' => []
         ],
         'relations' => [
@@ -102,23 +105,23 @@ return [
 
         ],
     ],
-    'insert' => [
-        'fields' => [
-            'id' => [],
-            "menu_it" => [],
-            "titolo_it" => [],
-            "content_it" => [],
-            "keywords" => [],
-            "attivo" => [],
-            'cup_site_page_id' => []
-        ],
-        'relations' => [
-
-        ],
-        'params' => [
-
-        ],
-    ],
+//    'insert' => [
+//        'fields' => [
+//            'id' => [],
+//            "menu_it" => [],
+//            "titolo_it" => [],
+//            "content_it" => [],
+//            "keywords" => [],
+//            "attivo" => [],
+//            'cup_site_page_id' => []
+//        ],
+//        'relations' => [
+//
+//        ],
+//        'params' => [
+//
+//        ],
+//    ],
 //    'insert' => [
 //
 //    ],

@@ -12,7 +12,13 @@ var ModelCupSiteNews = {
     edit : {
         fieldsConfig : {
             data : 'w-date-picker',
-            attivo : 'w-select',
+            attivo : {
+                type : 'w-radio',
+                domainValues : {
+                    0 : 'non attivo',
+                    1 : 'attivo'
+                }
+            },
             fotos : {
                 type :'w-hasmany',
                 template : 'tpl-full-no',
@@ -38,4 +44,50 @@ var ModelCupSiteNews = {
             }
         }
     }
+}
+var ManageCupSiteNews = {
+    modelName : 'cup_site_news',
+    listConf : jQuery.extend({
+        constraintKey : 'cup_site_page_id',
+        routeName : 'list-constraint',
+        methods : {
+            setRouteValues: function (route) {
+                var that = this;
+                route.setValues({
+                    modelName: that.modelName,
+                    constraintKey: that.constraintKey,
+                    constraintValue: that.constraintValue,
+                })
+            },
+        }
+    },ModelCupSiteNews.list),
+    editConf : jQuery.extend({
+        constraintKey : 'cup_site_page_id',
+        routeName : 'edit-constraint',
+        methods : {
+            setRouteValues: function (route) {
+                var that = this;
+                route.setValues({
+                    modelName: that.modelName,
+                    pk : that.pk,
+                    constraintKey: that.constraintKey,
+                    constraintValue: that.constraintValue,
+                })
+            },
+        }
+    },ModelCupSiteNews.edit),
+    insertConf : jQuery.extend({
+        constraintKey : 'cup_site_page_id',
+        routeName : 'insert-constraint',
+        methods : {
+            setRouteValues: function (route) {
+                var that = this;
+                route.setValues({
+                    modelName: that.modelName,
+                    constraintKey: that.constraintKey,
+                    constraintValue: that.constraintValue,
+                })
+            },
+        }
+    },ModelCupSiteNews.edit)
 }
