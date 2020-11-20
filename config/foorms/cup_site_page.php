@@ -105,6 +105,27 @@ return [
 
         ],
     ],
+    'web' => [
+        'form_type' => 'view',
+        'fields' => [
+            'id' => [],
+            "type" => [],
+            "menu_it" => [],
+            "titolo_it" => [],
+            "content_it" => [],
+            "keywords" => [],
+            "attivo" => [
+                'default' => 0
+            ],
+            'cup_site_page_id' => []
+        ],
+        'relations' => [
+
+        ],
+        'params' => [
+
+        ],
+    ],
 //    'insert' => [
 //        'fields' => [
 //            'id' => [],

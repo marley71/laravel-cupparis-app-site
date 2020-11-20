@@ -15,6 +15,9 @@
         <template v-if="type=='news'">
             <c-manage :c-comp-ref="newsManageRef" c-conf="ManageCupSiteNews"></c-manage>
         </template>
+        <template v-if="type=='eventi'">
+            <v-calendar :c-comp-ref="eventiRef" c-model="cup_site_news"></v-calendar>
+        </template>
 <!--        <div v-if="type=='html'"></div>-->
 <!--        <div v-if="type=='html'"></div>-->
     </div>

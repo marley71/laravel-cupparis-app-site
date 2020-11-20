@@ -1,6 +1,18 @@
 var ModelCupSiteNews = {
     list : {
         fields : ['data','titolo_it','attivo'],
+        constraintKey : 'cup_site_page_id',
+        routeName : 'list-constraint',
+        methods : {
+            setRouteValues: function (route) {
+                var that = this;
+                route.setValues({
+                    modelName: that.modelName,
+                    constraintKey: that.constraintKey,
+                    constraintValue: that.constraintValue,
+                })
+            },
+        },
         fieldsConfig : {
             data : 'w-date-text',
             attivo : {
@@ -10,6 +22,21 @@ var ModelCupSiteNews = {
         }
     },
     edit : {
+        fields : ['titolo_it','descrizione_it','data','data_fine','attivo','fotos'],
+        constraintKey : 'cup_site_page_id',
+        routeName : 'edit-constraint',
+        methods : {
+            setRouteValues: function (route) {
+                var that = this;
+                //alert('b '+that.routeName);
+                route.setValues({
+                    modelName: that.modelName,
+                    pk : that.pk,
+                    constraintKey: that.constraintKey,
+                    constraintValue: that.constraintValue,
+                })
+            },
+        },
         fieldsConfig : {
             data : 'w-date-picker',
             attivo : {
@@ -45,49 +72,23 @@ var ModelCupSiteNews = {
         }
     }
 }
+
+ModelCupSiteNews.insert = Object.assign({},ModelCupSiteNews.edit);
+ModelCupSiteNews.insert = Object.assign(ModelCupSiteNews.insert, {
+    routeName: 'insert-constraint',
+    methods: {
+        setRouteValues: function (route) {
+            var that = this;
+            alert('ss  ' + that.routeName);
+            route.setValues({
+                modelName: that.modelName,
+                constraintKey: that.constraintKey,
+                constraintValue: that.constraintValue,
+            })
+        },
+    }
+});
+
 var ManageCupSiteNews = {
     modelName : 'cup_site_news',
-    listConf : jQuery.extend({
-        constraintKey : 'cup_site_page_id',
-        routeName : 'list-constraint',
-        methods : {
-            setRouteValues: function (route) {
-                var that = this;
-                route.setValues({
-                    modelName: that.modelName,
-                    constraintKey: that.constraintKey,
-                    constraintValue: that.constraintValue,
-                })
-            },
-        }
-    },ModelCupSiteNews.list),
-    editConf : jQuery.extend({
-        constraintKey : 'cup_site_page_id',
-        routeName : 'edit-constraint',
-        methods : {
-            setRouteValues: function (route) {
-                var that = this;
-                route.setValues({
-                    modelName: that.modelName,
-                    pk : that.pk,
-                    constraintKey: that.constraintKey,
-                    constraintValue: that.constraintValue,
-                })
-            },
-        }
-    },ModelCupSiteNews.edit),
-    insertConf : jQuery.extend({
-        constraintKey : 'cup_site_page_id',
-        routeName : 'insert-constraint',
-        methods : {
-            setRouteValues: function (route) {
-                var that = this;
-                route.setValues({
-                    modelName: that.modelName,
-                    constraintKey: that.constraintKey,
-                    constraintValue: that.constraintValue,
-                })
-            },
-        }
-    },ModelCupSiteNews.edit)
 }

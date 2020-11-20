@@ -7,12 +7,14 @@ crud.conf['c-site-page'] = {
         domainValues : {
             'html' : 'html libero',
             'news' : 'news',
+            'eventi' : 'eventi'
         },
         defaultValue : 'html',
     },
     pageData : null,
     paginaRef : 'paginaRef',
     newsManageRef : 'newsManageRef',
+    eventiRef : 'eventiRef',
 }
 crud.components.cSitePage = Vue.component('c-site-page', {
     extends: crud.components.cComponent,
@@ -27,9 +29,14 @@ crud.components.cSitePage = Vue.component('c-site-page', {
                     that.selectType(this.value);
                 }
             }
-            ManageCupSiteNews.listConf.constraintValue = conf.pk;
-            ManageCupSiteNews.editConf.constraintValue = conf.pk;
-            ManageCupSiteNews.insertConf.constraintValue = conf.pk;
+            // ManageCupSiteNews.listConf.constraintValue = conf.pk;
+            // ManageCupSiteNews.editConf.constraintValue = conf.pk;
+            // ManageCupSiteNews.insertConf.constraintValue = conf.pk;
+            ModelCupSiteNews.list.constraintValue = conf.pk;
+            ModelCupSiteNews.edit.constraintValue = conf.pk;
+            ModelCupSiteNews.insert.constraintValue = conf.pk;
+
+
             //ManageCupSiteNews.viewConf.constraintValue = conf.pk;
             return conf;
         },

@@ -60,10 +60,16 @@ class CupSiteController extends Controller
                     'route_prefix' => config('cupparis-site.route_prefix'),
                 ]);
             case 'news':
-                $news = CupSiteNews::get()->toArray();
+                //$news = CupSiteNews::get()->toArray();
+                $newsForm = Foorm::getFoorm('cup_site_news.weblist',request());
+
+
+
+                print_r($newsForm->getFormData());
+                die();
                 return view('cup_site.' . $this->layout .'.pages.news',[
                     'page'=> $page,
-                    'news'=> $news,
+                    'news'=> $newsForm->getFormData()['data'],
                     'layout' => $this->layout,
                     'setting' => $this->setting,
                     'menu' => $this->menu,
@@ -78,17 +84,21 @@ class CupSiteController extends Controller
         $item = CupSiteNews::where('menu_it',$menu)->first();
         if (!$item)
             abort(404);
-
         $newsForm = Foorm::getFoorm('cup_site_news.web',request(),['id' => $item['id']]);
         $pageForm = Foorm::getFoorm('cup_site_page.web',request(),['id' => $item['cup_site_page_id']]);
 
-        $item = $item?$item->toArray():[];
-        $page = CupSitePage::where('menu_it',$item['tag'])->first();
-        $page = $page?$page->toArray():[];
+        $page = $pageForm->getFormData();
+        $news = $newsForm->getFormData();
+        //$item = $item?$item->toArray():[];
+        //$page = CupSitePage::where('menu_it',$item['tag'])->first();
+        //$page = $page?$page->toArray():[];
         $page['children'] = [];
+//        print_r($page);
+//        print_r($news);
+//        die();
         return view('cup_site.' . $this->layout .'.pages.news_dettaglio',[
-            'page'=> $pageForm->getFormData(),
-            'news'=> $newsForm->getFormData(),
+            'page'=> $page,
+            'news'=> $news,
             'layout' => $this->layout,
             'setting' => $this->setting,
             'menu' => $this->menu,

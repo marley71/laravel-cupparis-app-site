@@ -25,8 +25,8 @@ class CreateCupSiteNewsTable extends Migration
 //            $table->string('titolo_es');
 //            $table->text('descrizione_es');
             $table->string('tag')->nullable()->default(null);
-            $table->date('data');
-            $table->date('data_fine')->nullable()->default(null);
+            $table->dateTime('data');
+            $table->dateTime('data_fine')->nullable()->default(null);
             $table->boolean('attivo')->default(true);
             $table->integer('cup_site_page_id')->unsigned()->index()->nullable();
             $table->foreign('cup_site_page_id')->references('id')->on('cup_site_pages')->onDelete('set null')->onUpdate('cascade');

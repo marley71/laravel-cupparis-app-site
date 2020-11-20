@@ -59,15 +59,10 @@ return [
         ],
 
         'fields' => [
-            "id" => [
-
-            ],
-            "data" => [
-
-            ],
-            "titolo_it" => [
-
-            ],
+            "id" => [],
+            "data" => [],
+            'data_fine' => [],
+            "titolo_it" => [],
             'attivo' => [
 
             ],
@@ -92,7 +87,10 @@ return [
             "titolo_it" => [],
             "tag" => [],
             'data' => [
-                'default' => date('Y-m-d'),
+                'default' => date('Y-m-d H:i'),
+            ],
+            'data_fine' => [
+                'default' => date('Y-m-d H:i'),
             ],
             "attivo" => [
                 'default' => 0
@@ -143,6 +141,38 @@ return [
 //
 //    ],
     'web' => [
+        'form_type' => 'view',
+        'fields' => [
+            'id' => [],
+            "descrizione_it" => [],
+            "titolo_it" => [],
+            "tag" => [],
+            'data' => [],
+            "attivo" => [],
+            //'cup_site_page_id' => []
+        ],
+        'relations' => [
+            "fotos" => [
+                "fields" => [
+                    'nome_it' => [],
+                    'descrizione_it' => [],
+                    'resource' => [],
+                    'ordine' => [],
+                ],
+                'orderKey' => 'ordine',
+
+                'beforeNewCallbackMethods' => ['setFieldsFromResource'],
+                'beforeUpdateCallbackMethods' => ['setFieldsFromResource'],
+                'afterNewCallbackMethods' => ['filesOps'],
+                'afterUpdateCallbackMethods' => ['filesOps'],
+            ],
+        ],
+        'params' => [
+
+        ],
+    ],
+    'weblist' => [
+        'form_type' => 'list',
         'fields' => [
             'id' => [],
             "descrizione_it" => [],
