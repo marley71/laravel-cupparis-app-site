@@ -19,7 +19,7 @@ var ModelCupSitePage = {
     list: {
         modelName : 'cup_site_page',
         fields : ['codice','nome_it','attivo'],
-        actions : ['action-edit','action-delete','action-insert',
+        actions : ['action-edit','action-delete','action-insert','action-anteprima',
             'action-export-csv'
         ],
         orderFields : {
@@ -41,6 +41,7 @@ var ModelCupSitePage = {
     edit: {
         modelName : 'cup_site_page',
         actions : ['action-save'],
+        fields : ['menu_it','titolo_it','content_it','keywords','attivo','cup_site_page_id'],
         fieldsConfig : {
             cup_site_page_id : 'w-hidden',
             content_it : {
@@ -49,7 +50,7 @@ var ModelCupSitePage = {
             },
             keywords : {
                 type: 'w-textarea',
-                template: 'tpl-no'
+                template: 'tpl-full-no'
             },
             attivo : {
                 type : 'w-radio',

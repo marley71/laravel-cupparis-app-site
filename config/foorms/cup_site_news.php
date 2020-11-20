@@ -175,6 +175,7 @@ return [
         'form_type' => 'list',
         'fields' => [
             'id' => [],
+            'menu_it' => [],
             "descrizione_it" => [],
             "titolo_it" => [],
             "tag" => [],

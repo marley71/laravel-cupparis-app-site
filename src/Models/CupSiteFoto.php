@@ -24,4 +24,9 @@ class CupSiteFoto extends Breeze
     public static $relationsData = array(
         'mediable' => array(self::MORPH_TO, 'name' => 'mediable'),
     );
+
+    public function getUrl()
+    {
+        return '/viewmediable/cup_site_foto/'.$this->getKey();
+    }
 }

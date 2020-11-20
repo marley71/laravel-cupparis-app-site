@@ -12,6 +12,21 @@ crud.components.vCalendar = Vue.component('v-calendar', {
     methods : {
         completed() {
             var that = this;
+            //console.log('length button ' + that.jQe('.fc-prev-button span').length)
+            that.jQe('.fc-prev-button').click(function(){
+                // inserire qui la chiamata ajax
+                for (var i in that.value) {
+                    that.addEvent(that.value[i]);
+                }
+            });
+
+            that.jQe('.fc-next-button').click(function(){
+                // inserire qui la chiamata ajax
+                for (var i in that.value) {
+                    that.addEvent(that.value[i]);
+                }
+            });
+
             for (var i in that.value) {
                 that.addEvent(that.value[i]);
             }

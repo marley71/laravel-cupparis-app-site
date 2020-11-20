@@ -10,7 +10,7 @@
                         <div class="bg-white p-2 shadow-primary-xs transition-hover-top transition-all-ease-250">
                             <a href="/{{$route_prefix}}/news/{{$item['menu_it']}}" class="d-block overflow-hidden overlay-dark-hover overlay-opacity-2 text-decoration-none text-dark">
                                 @if ( count(Arr::get($item,'fotos',[])) > 0 )
-                                    <img class="img-fluid lazy rounded" data-src="demo.files/images/unsplash/portfolio/boxed-water-is-better-CYEgCGYm2JY-unsplash-min.jpg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAEsCAQAAACoWRFeAAAAE0lEQVR42mNkYGAcRaNoFA0cAgAUvAEtNFICWAAAAABJRU5ErkJggg==" alt="...">
+                                    <img class="img-fluid lazy rounded" data-src="{{$item['fotos'][0]['resource']['url']}}" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAEsCAQAAACoWRFeAAAAE0lEQVR42mNkYGAcRaNoFA0cAgAUvAEtNFICWAAAAABJRU5ErkJggg==" alt="...">
                                 @endif
                             </a>
 

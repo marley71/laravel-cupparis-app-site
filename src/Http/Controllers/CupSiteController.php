@@ -13,7 +13,7 @@ use Marley71\Cupparis\App\Site\Models\CupSiteSetting;
 
 class CupSiteController extends Controller
 {
-    private $layout = null;
+    protected static $layout = null;
     private $setting = null;
     private $menu = null;
     /**
@@ -24,7 +24,7 @@ class CupSiteController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
-        $this->layout = config('cupparis-site.layout');
+        self::$layout = config('cupparis-site.layout');
         $setting = CupSiteSetting::where('attivo',1)->first();
         if (!$setting) {
             $setting = CupSiteSetting::first();
@@ -52,29 +52,29 @@ class CupSiteController extends Controller
         switch (Arr::get($page,'type')) {
             case 'html':
                 //print_r($this->menu);
-                return view('cup_site.' . $this->layout .'.pages.html',[
+                return view('cup_site.' . self::$layout .'.pages.html',[
                     'page'=> $page,
-                    'layout' => $this->layout,
+                    'layout' => self::$layout,
                     'setting' => $this->setting,
                     'menu' => $this->menu,
                     'route_prefix' => config('cupparis-site.route_prefix'),
                 ]);
             case 'news':
                 //$news = CupSiteNews::get()->toArray();
+
                 $newsForm = Foorm::getFoorm('cup_site_news.weblist',request());
-
-
-
-                print_r($newsForm->getFormData());
-                die();
-                return view('cup_site.' . $this->layout .'.pages.news',[
+//                print_r($newsForm->getFormData());
+//                die();
+                return view('cup_site.' . self::$layout .'.pages.news',[
                     'page'=> $page,
                     'news'=> $newsForm->getFormData()['data'],
-                    'layout' => $this->layout,
+                    'layout' => self::$layout,
                     'setting' => $this->setting,
                     'menu' => $this->menu,
                     'route_prefix' => config('cupparis-site.route_prefix'),
                 ]);
+            case 'home':
+                return $this->_home($page);
         }
 
         abort(404);
@@ -96,11 +96,20 @@ class CupSiteController extends Controller
 //        print_r($page);
 //        print_r($news);
 //        die();
-        return view('cup_site.' . $this->layout .'.pages.news_dettaglio',[
+        return view('cup_site.' . self::$layout .'.pages.news_dettaglio',[
             'page'=> $page,
             'news'=> $news,
-            'layout' => $this->layout,
+            'layout' => self::$layout,
             'setting' => $this->setting,
+            'menu' => $this->menu,
+            'route_prefix' => config('cupparis-site.route_prefix'),
+        ]);
+    }
+
+    protected function _home($page) {
+        return view('cup_site.' . self::$layout .'.pages.home', [
+            'setting' => $this->setting,
+            'page' => $page,
             'menu' => $this->menu,
             'route_prefix' => config('cupparis-site.route_prefix'),
         ]);
@@ -124,5 +133,11 @@ class CupSiteController extends Controller
 //
     protected function _menu() {
         return CupSitePage::getPageTree();
+    }
+
+    public static function block($type='news') {
+        $page = CupSitePage::where('type',$type)->first();
+        $items = CupSiteNews::where('cup_site_page_id',$page->getKey());
+        return view('cup_site.' . self::$layout .'.blocks.' . $type,['items' => $items]);
     }
 }

@@ -24,6 +24,7 @@ class CreateCupSitePagesTable extends Migration
             $table->boolean('attivo')->default(1);// varchar(50) DEFAULT NULL,
             $table->integer('ordine')->default(0);
             $table->enum('type',['html','news','home','eventi'])->default('html');
+            $table->integer('fix')->default(0);
             $table->integer('cup_site_page_id')->unsigned()->index()->nullable();
             $table->foreign('cup_site_page_id')->references('id')->on('cup_site_pages')->onDelete('restrict')->onUpdate('cascade');
             $table->nullableOwnerships();

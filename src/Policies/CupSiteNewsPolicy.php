@@ -3,11 +3,11 @@
 namespace Marley71\Cupparis\App\Site\Policies;
 
 use App\Models\User;
-use App\Models\CupSitePage;
+use App\Models\CupSiteNews;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Gecche\PolicyBuilder\Facades\PolicyBuilder;
 
-class CupSitePagePolicy
+class CupSiteNewsPolicy
 {
     use HandlesAuthorization;
 
@@ -15,13 +15,13 @@ class CupSitePagePolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\CupSitePage  $model
+     * @param  \App\Models\CupSiteNews  $model
      * @return mixed
      */
-    public function view(User $user, CupSitePage $model)
+    public function view(User $user, CupSiteNews $model)
     {
         //
-        if ($user && $user->can('view cup_site_page')) {
+        if ($user && $user->can('view cup_site_news')) {
             return true;
         }
 
@@ -32,13 +32,13 @@ class CupSitePagePolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\CupSiteUser  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(CupSiteUser $user)
     {
         //
-        if ($user && $user->can('create cup_site_page')) {
+        if ($user && $user->can('create cup_site_news')) {
             return true;
         }
 
@@ -49,13 +49,13 @@ class CupSitePagePolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\CupSitePage  $model
+     * @param  \App\Models\CupSiteNews  $model
      * @return mixed
      */
-    public function update(User $user, CupSitePage $model)
+    public function update(User $user, CupSiteNews $model)
     {
         //
-        if ($user && $user->can('edit cup_site_page')) {
+        if ($user && $user->can('edit cup_site_news')) {
             return true;
         }
 
@@ -66,13 +66,13 @@ class CupSitePagePolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\CupSitePage  $model
+     * @param  \App\Models\CupSiteNews  $model
      * @return mixed
      */
-    public function delete(User $user, CupPage $model)
+    public function delete(User $user, CupSiteNews $model)
     {
         //
-        if ($user && $user->can('delete cup_site_page')) {
+        if ($user && $user->can('delete cup_site_news')) {
             return true;
         }
 
@@ -88,7 +88,7 @@ class CupSitePagePolicy
     public function listing(User $user)
     {
         //
-        if ($user && $user->can('list cup_site_page')) {
+        if ($user && $user->can('list cup_site_news')) {
             return true;
         }
 
@@ -108,10 +108,10 @@ class CupSitePagePolicy
 //            return Gate::aclAll($builder);
 //        }
 
-        if ($user && $user->can('view cup_site_page')) {
-            return PolicyBuilder::all($builder,CupSitePage::class);
+        if ($user && $user->can('view cup_site_news')) {
+            return PolicyBuilder::all($builder,CupSiteNews::class);
         }
 
-        return PolicyBuilder::none($builder,CupSitePage::class);
+        return PolicyBuilder::all($builder,CupSiteNews::class);
     }
 }

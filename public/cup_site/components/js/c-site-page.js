@@ -6,6 +6,7 @@ crud.conf['c-site-page'] = {
         cRef:'tipoPaginaR',
         domainValues : {
             'html' : 'html libero',
+            'home' : 'home',
             'news' : 'news',
             'eventi' : 'eventi'
         },
@@ -35,7 +36,9 @@ crud.components.cSitePage = Vue.component('c-site-page', {
             ModelCupSiteNews.list.constraintValue = conf.pk;
             ModelCupSiteNews.edit.constraintValue = conf.pk;
             ModelCupSiteNews.insert.constraintValue = conf.pk;
-
+            ModelCupSiteNews.list.pageData = conf.pageData;
+            ModelCupSiteNews.edit.pageData = conf.pageData;
+            ModelCupSiteNews.insert.pageData = conf.pageData;
 
             //ManageCupSiteNews.viewConf.constraintValue = conf.pk;
             return conf;

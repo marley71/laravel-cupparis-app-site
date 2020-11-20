@@ -24,7 +24,8 @@
   },
   "policies": {
     "models": {
-      "\\App\\Models\\CupSitePage": "\\App\\Policies\\CupSitePagePolicy",
+        "\\App\\Models\\CupSitePage": "\\App\\Policies\\CupSitePagePolicy",
+        "\\App\\Models\\CupSitePage": "\\App\\Policies\\CupSiteNewsPolicy",
         "\\App\\Models\\CupSiteSetting": "\\App\\Policies\\CupSiteSettingPolicy"
     }
   },

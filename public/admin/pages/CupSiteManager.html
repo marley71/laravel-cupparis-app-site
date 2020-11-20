@@ -58,8 +58,11 @@
             getPageData(id) {
                 var that = this;
                 for (var i in that.value) {
-                    if (that.value[i].id == id)
+                    console.log('confronto',that.value[i].id,id);
+                    if (""+that.value[i].id == (id+"")) {
+                        console.log('pageData',that.value[i]);
                         return that.value[i];
+                    }
                 }
                 return null;
             },
@@ -113,9 +116,38 @@
                     },
                     "contextmenu":{
                         'items' : function(node) {
+                            if (node.id == 'root')
+                                return {};
+                            var pageData = that.getPageData(node.id);
+                            if (parseInt(pageData.fix) != 0)
+                                return {};
+
                             var items = $.jstree.defaults.contextmenu.items();
                             items.ccp = false;
+                            //items.delete._disabled = true;
 
+                            //items.create._disabled = (parseInt(pageData.fix) != 0);
+                            //items.rename._disabled = (parseInt(pageData.fix) != 0);
+                            items.create.icon = 'fa fa-plus';
+                            items.rename.icon = 'fa fa-pencil';
+                            items.remove =  {
+                                label: "Delete",
+                                icon : 'fa fa-trash',
+                                //_disabled : (parseInt(pageData.fix) != 0),
+                                action: function() {
+                                    //console.log('nodeee',that.getPageData(node.id));
+                                    that.confirmDialog('Cancellare la pagina ' + pageData.menu_it,{
+                                        ok : function () {
+                                            deleteNode(node);
+                                        }
+                                    })
+                                    // if ( confirm("Really delete " + pageData.menu_it + "?") ) {
+                                    //     deleteNode(node);
+                                    // }
+                                },
+                                separator_before: true
+                            }
+                            console.log('items',items);
                             return items;
                         }
                     },
@@ -219,7 +251,7 @@
                     that.currentPage.$destroy();
                 }
                 var htmlId = 'areaEdit';
-                console.log('page type',pk,that.pagesType[pk],that.pagesType)
+                console.log('page type',pk,that.pagesType[pk],that.pagesType,that.getPageData(pk))
                 var componente = new that.$options.components['c-site-page']({
                     propsData : {
                         cConf : {

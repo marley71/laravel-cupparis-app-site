@@ -3,6 +3,18 @@ var ModelCupSiteNews = {
         fields : ['data','titolo_it','attivo'],
         constraintKey : 'cup_site_page_id',
         routeName : 'list-constraint',
+        actions : ['action-edit','action-delete','action-delete-selected','action-insert'],//'action-anteprima'],
+        customActions : {
+            'action-anteprima' : {
+                type : 'collection',
+                icon : 'fa fa-eye',
+                execute : function () {
+                    var that = this;
+                    var pageMenu = that.view.pageData.menu_it || 'news';
+                    window.open('/cup_site/' + pageMenu, '_blank');
+                }
+            }
+        },
         methods : {
             setRouteValues: function (route) {
                 var that = this;
@@ -90,5 +102,6 @@ ModelCupSiteNews.insert = Object.assign(ModelCupSiteNews.insert, {
 });
 
 var ManageCupSiteNews = {
+    collapsible : false,
     modelName : 'cup_site_news',
 }
