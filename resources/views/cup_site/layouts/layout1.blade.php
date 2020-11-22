@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap">
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="/{{$route_prefix}}/favicon.ico">
     <link rel="apple-touch-icon" href="demo.files/logo/icon_512x512.png">
 
     <link rel="manifest" href="/{{config('cupparis-site.public_path')}}/assets/images/manifest/manifest.json">

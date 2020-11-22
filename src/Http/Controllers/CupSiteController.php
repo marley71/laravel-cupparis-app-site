@@ -45,7 +45,9 @@ class CupSiteController extends Controller
             $page = CupSitePage::first(); // bisogna prendere l'home
         else
             $page = CupSitePage::where('menu_it',$menu)->first();
-        $page = $page?$page->toArray():[];
+        if (!$page)
+            abort(404);
+        $page = $page->toArray();
         //$cup_site_page_id = Arr::get($page,'id',0);
         $mainPage = CupSitePage::find($page['cup_site_page_id']);
         if ($mainPage)
