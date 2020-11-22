@@ -61,6 +61,20 @@ var ModelCupSitePage = {
             }
         }
     },
-
+    home : {
+        modelName : 'cup_site_page',
+        actions : ['action-save'],
+        fields : ['content_it','keywords'],
+        fieldsConfig : {
+            content_it : {
+                type : 'w-textarea',
+                template : 'tpl-no'
+            },
+            keywords : {
+                type: 'w-textarea',
+                template: 'tpl-no'
+            }
+        }
+    }
 }
 

@@ -22,7 +22,7 @@ rm -f database/migrations/*create_cup_site_*.php
 rm -rf public/cup_site
 rm -rf resources/views/cup_site
 rm -f app/Http/Controllers/CupSiteController.php
-rm -rf app/Foorm/CupSitePage
+rm -rf app/Foorm/CupSite*
 rm -f app/Models/Relations/CupSite*
 
 ```  

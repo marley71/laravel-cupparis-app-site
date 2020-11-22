@@ -33,7 +33,10 @@ class CupSiteServiceProvider extends ServiceProvider
 
         //Publishing and overwriting app folders
         $this->publishes([
-            __DIR__ . '/../app/Foorm/CupSitePage' => app_path('Foorm/CupSitePage'),
+            __DIR__ . '/../app/Foorm' => app_path('Foorm'),
+//            __DIR__ . '/../app/Foorm/CupSitePage' => app_path('Foorm/CupSitePage'),
+//            __DIR__ . '/../app/Foorm/CupSitePage' => app_path('Foorm/CupSiteNews'),
+//            __DIR__ . '/../app/Foorm/CupSitePage' => app_path('Foorm/CupSiteSetting'),
             __DIR__ . '/../app/Models' => app_path('Models'),
             //__DIR__ . '/../app/Models/Relations' => app_path('Models/Relations'),
             __DIR__ . '/../app/Policies' => app_path('Policies'),

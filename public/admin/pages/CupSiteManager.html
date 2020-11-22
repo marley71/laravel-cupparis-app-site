@@ -54,20 +54,36 @@
         currentPage : null,
         settings : null,
         pagesType : {},
+        newNodes : [],
         methods : {
             getPageData(id) {
                 var that = this;
                 for (var i in that.value) {
-                    console.log('confronto',that.value[i].id,id);
+                    //console.log('confronto',that.value[i].id,id);
                     if (""+that.value[i].id == (id+"")) {
-                        console.log('pageData',that.value[i]);
+                        //console.log('pageData',that.value[i]);
                         return that.value[i];
+                    }
+                    for (var k in that.value[i].children) {
+                        if (""+that.value[i].children[k].id == (id+"")) {
+                            //console.log('pageData',that.value[i]);
+                            return that.value[i].children[k];
+                        }
+                    }
+                }
+                console.log('controllo new nodes',that.newNodes)
+                for (var i in that.newNodes) {
+                    //console.log('confronto',that.value[i].id,id);
+                    if (""+that.newNodes[i].id == (id+"")) {
+                        //console.log('pageData',that.value[i]);
+                        return that.newNodes[i];
                     }
                 }
                 return null;
             },
             completed  : function () {
                 var that = this;
+                PM = this;
                 for (var i in that.value) {
                     that.pagesType[that.value[i].id] = that.value[i].type;
                 }
@@ -116,37 +132,44 @@
                     },
                     "contextmenu":{
                         'items' : function(node) {
-                            if (node.id == 'root')
-                                return {};
+                            var items = $.jstree.defaults.contextmenu.items();
+                            items.ccp = false;
+                            if (node.id == 'root') {
+                                delete items.remove;
+                                delete items.rename;
+                                delete items.remove;
+                                return items;
+                            }
                             var pageData = that.getPageData(node.id);
                             if (parseInt(pageData.fix) != 0)
                                 return {};
 
-                            var items = $.jstree.defaults.contextmenu.items();
-                            items.ccp = false;
+
                             //items.delete._disabled = true;
 
                             //items.create._disabled = (parseInt(pageData.fix) != 0);
                             //items.rename._disabled = (parseInt(pageData.fix) != 0);
                             items.create.icon = 'fa fa-plus';
                             items.rename.icon = 'fa fa-pencil';
-                            items.remove =  {
-                                label: "Delete",
-                                icon : 'fa fa-trash',
-                                //_disabled : (parseInt(pageData.fix) != 0),
-                                action: function() {
-                                    //console.log('nodeee',that.getPageData(node.id));
-                                    that.confirmDialog('Cancellare la pagina ' + pageData.menu_it,{
-                                        ok : function () {
-                                            deleteNode(node);
-                                        }
-                                    })
-                                    // if ( confirm("Really delete " + pageData.menu_it + "?") ) {
-                                    //     deleteNode(node);
-                                    // }
-                                },
-                                separator_before: true
-                            }
+                            items.remove.icon = 'fa fa-trash';
+                            items.remove.separator_before = true;
+                            // items.remove =  {
+                            //     label: "Delete",
+                            //     icon : 'fa fa-trash',
+                            //     //_disabled : (parseInt(pageData.fix) != 0),
+                            //     action: function() {
+                            //         //console.log('nodeee',that.getPageData(node.id));
+                            //         that.confirmDialog('Cancellare la pagina ' + pageData.menu_it,{
+                            //             ok : function () {
+                            //                 deleteNode(node);
+                            //             }
+                            //         })
+                            //         // if ( confirm("Really delete " + pageData.menu_it + "?") ) {
+                            //         //     deleteNode(node);
+                            //         // }
+                            //     },
+                            //     separator_before: true
+                            // }
                             console.log('items',items);
                             return items;
                         }
@@ -175,19 +198,34 @@
                         attivo : 1,
                         cup_site_page_id : data.parent=='root'?null:data.parent,
                     };
+                    that.waitStart();
                     that.savePage(null,params,function (json) {
+                        that.waitEnd();
                         if (json.error) {
                             that.errorDialog(json.msg);
                             return ;
                         }
+                        if (data.parent == 'root') {
+                            console.log('create node root ',data.parent);
+                            //that.value.push(json.result);
+                            that.newNodes.push(json.result)
+                        } else {
+                            console.log('create node ',data.parent,pageData);
+                            var pageData = that.getPageData(data.parent);
+
+                            pageData.children.push(json.result);
+                        }
+
                         jQuery('#jstree').jstree(true).set_id(data.node, json.result.id);
                     });
 
                 });
                 $('#jstree').on("rename_node.jstree", function (e,data) {
                     console.log('rename node',e,data);
+                    var pageData = that.getPageData(data.node.id)
                     var params = {
                         menu_it : data.text,
+                        titolo_it : pageData.titolo_it || data.text,
                     };
                     that.savePage(data.node.id,params);
                 });
@@ -251,13 +289,14 @@
                     that.currentPage.$destroy();
                 }
                 var htmlId = 'areaEdit';
-                console.log('page type',pk,that.pagesType[pk],that.pagesType,that.getPageData(pk))
+                var pageData = that.getPageData(pk);
+                console.log('page type',pk,that.getPageData(pk))
                 var componente = new that.$options.components['c-site-page']({
                     propsData : {
                         cConf : {
                             pk : pk,
-                            type : that.pagesType[pk],
-                            pageData : that.getPageData(pk)
+                            type : pageData.type,
+                            pageData : pageData
                         },
                     },
                     ref : 'site-page'

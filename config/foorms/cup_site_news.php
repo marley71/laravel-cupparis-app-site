@@ -181,7 +181,7 @@ return [
             "tag" => [],
             'data' => [],
             "attivo" => [],
-            //'cup_site_page_id' => []
+            'cup_site_page_id' => []
         ],
         'relations' => [
             "fotos" => [

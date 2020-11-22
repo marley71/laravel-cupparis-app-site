@@ -4,9 +4,9 @@
     <section>
         <div class="container">
 
-            <div>{{$item['titolo_it']}}</div>
+            <div>{{$news['titolo_it']}}</div>
 {{--                <a href="/{{$route_prefix}}/page/{{$item->id}}">dettaglio</a>--}}
-            <div>{{$item['descrizione_it']}}</div>
+            <div>{{$news['descrizione_it']}}</div>
 
         </div>
     </section>

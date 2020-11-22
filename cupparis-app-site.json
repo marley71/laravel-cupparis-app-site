@@ -1,20 +1,21 @@
 {
   "foorm": {
-    "entities": [
-      "cup_site_page",
-        "cup_site_setting"
-    ]
+        "entities": [
+            "cup_site_page",
+            "cup_site_news",
+            "cup_site_setting"
+        ]
   },
   "modelconfs": {
     "files": [
-      "CupSitePage.js",
+        "CupSitePage.js",
         "CupSiteSetting.js",
         "CupSiteNews.js"
     ]
   },
   "permissions": {
     "models": [
-      "cup_site_page",
+        "cup_site_page",
         "cup_site_setting"
     ],
     "other_permissions": {
@@ -30,7 +31,12 @@
     }
   },
   "models": [
-    "CupSitePage","CupSiteSetting","CupSiteFoto","CupSiteAttachment","CupSiteVideo","CupSiteNews"
+      "CupSitePage",
+      "CupSiteSetting",
+      "CupSiteFoto",
+      "CupSiteAttachment",
+      "CupSiteVideo",
+      "CupSiteNews"
   ],
   "datafile-models": [
   ],
