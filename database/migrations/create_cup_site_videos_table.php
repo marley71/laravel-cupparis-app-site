@@ -18,7 +18,9 @@ class CreateCupSiteVideosTable extends Migration {
 			$table->string('link');
             $table->string('nome_it')->nullable();
             $table->text('descrizione_it')->nullable();
-			$table->enum('type',['youtube'])->default('youtube');
+            $table->string('link')->nullable();
+            $table->string('json_data')->nullable();
+			$table->enum('provider',['youtube','vimeo'])->default('youtube');
 			$table->integer('ordine')->unsigned()->default(0);
             $table->string('mediable_type')->nullable();
             $table->integer('mediable_id')->unsigned()->nullable();

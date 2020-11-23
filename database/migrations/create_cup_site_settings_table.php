@@ -19,13 +19,14 @@ class CreateCupSiteSettingsTable extends Migration
             $table->increments('id');
             $table->string('titolo_it')->nullable();
             $table->string('logo')->nullable();
+            $table->string('layout')->nullable();
             $table->text('properties')->nullable();
             $table->text('default_properties')->nullable();
             //$table->text('keywords')->nullable();
 
 //            $table->integer('area_id')->unsigned()->index();
 //            $table->foreign('area_id')->references('id')->on('cup_geo_aree')->onDelete('restrict')->onUpdate('cascade');
-            $table->boolean('attivo')->default(0);// varchar(50) DEFAULT NULL,
+            $table->integer('default')->default(0);// varchar(50) DEFAULT NULL,
 
             $table->nullableOwnerships();
             $table->nullableTimestamps();

@@ -72,7 +72,25 @@ class CupSiteController extends Controller
                 ]);
             case 'news':
             case 'eventi':
-                $newsForm = Foorm::getFoorm('cup_site_news.weblist',request(),['s_cup_site_page_id' => $page['id']]);
+//                $search_filters = [
+//                    'search_filters' =>  [
+//                        [
+//                            'field' => 's_cup_site_page_id',
+//                            'value' => "".$page['id'],
+//                        ]
+//                    ]
+//                ];
+                $request = request()->merge(['s_cup_site_page_id' => "".$page['id']]);
+
+                //$request->set()
+                $newsForm = Foorm::getFoorm('cup_site_news.weblist',$request);
+//                $newsForm->input['search_filters'] = [
+//                    [
+//                        'field' => 'cup_site_page_id',
+//                        'value' => $page['id'],
+//                    ]
+//                ];
+                //$newsForm = Foorm::getFoorm('cup_site_news.weblist',request(),['cup_site_page_id' => $page['id']]);
                 $data = $newsForm->getFormData()['data'];
                 return view('cup_site.' . self::$layout .'.pages.' . $pageType,[
                     'page'=> $page,
@@ -193,7 +211,8 @@ class CupSiteController extends Controller
                 return view('cup_site.' . self::$layout .'.blocks.' . $type,['items' => $items]);
             case 'slider':
                 $page = CupSitePage::first();
-                $items = CupSiteNews::where('cup_site_page_id',$page->getKey());
+                $items = CupSiteNews::where('cup_site_page_id',$page->getKey())->get()->toArray();
+
                 return view('cup_site.' . self::$layout .'.blocks.' . $type,['items' => $items]);
 
         }

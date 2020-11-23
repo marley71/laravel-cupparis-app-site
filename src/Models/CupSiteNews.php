@@ -29,8 +29,8 @@ class CupSiteNews extends Breeze
 
     public static $relationsData = [
         'fotos' => [self::MORPH_MANY, 'related' => CupSiteFoto::class, 'name' => 'mediable'],
-        //'attachments' => [self::HAS_MANY, 'related' => CupSiteFoto::class, 'name' => 'mediable'],
-
+        'attachments' => [self::MORPH_MANY, 'related' => CupSiteAttachment::class, 'name' => 'mediable'],
+        'videos' => array(self::MORPH_MANY, 'related' => CupSiteVideo::class,'name' => 'mediable'),
 
 //        'belongsto' => array(self::BELONGS_TO, Area::class, 'foreignKey' => '<FOREIGNKEYNAME>'),
 //        'belongstomany' => array(self::BELONGS_TO_MANY, Area::class, 'table' => '<TABLEPIVOTNAME>','pivotKeys' => [],'foreignKey' => '<FOREIGNKEYNAME>','otherKey' => '<OTHERKEYNAME>') ,

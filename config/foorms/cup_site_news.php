@@ -7,6 +7,9 @@ return [
         "fields" => [
             "titolo_it" => [
                 'operator' => 'like',
+            ],
+            "cup_site_page_id" => [
+                'operator' => '='
             ]
         ],
 
@@ -70,7 +73,30 @@ return [
             'cup_site_page_id' => []
         ],
         'relations' => [
+            "attachments" => [
+                "fields" => [
+                    'nome_it' => [],
+                    'descrizione_it' => [],
+                    'resource' => [],
+                    'ordine' => [],
+                ],
+                'orderKey' => 'ordine',
 
+                'beforeNewCallbackMethods' => ['setFieldsFromResource'],
+                'beforeUpdateCallbackMethods' => ['setFieldsFromResource'],
+                'afterNewCallbackMethods' => ['filesOps'],
+                'afterUpdateCallbackMethods' => ['filesOps'],
+            ],
+            "videos" => [
+                "fields" => [
+                    'nome_it' => [],
+                    'descrizione_it' => [],
+                    'link' => [],
+                    'type' => [],
+                    'ordine' => [],
+                ],
+                'orderKey' => 'ordine',
+            ],
         ],
         'params' => [
 
@@ -111,6 +137,30 @@ return [
                 'beforeUpdateCallbackMethods' => ['setFieldsFromResource'],
                 'afterNewCallbackMethods' => ['filesOps'],
                 'afterUpdateCallbackMethods' => ['filesOps'],
+            ],
+            "attachments" => [
+                "fields" => [
+                    'nome_it' => [],
+                    'descrizione_it' => [],
+                    'resource' => [],
+                    'ordine' => [],
+                ],
+                'orderKey' => 'ordine',
+
+                'beforeNewCallbackMethods' => ['setFieldsFromResource'],
+                'beforeUpdateCallbackMethods' => ['setFieldsFromResource'],
+                'afterNewCallbackMethods' => ['filesOps'],
+                'afterUpdateCallbackMethods' => ['filesOps'],
+            ],
+            "videos" => [
+                "fields" => [
+                    'nome_it' => [],
+                    'descrizione_it' => [],
+                    'link' => [],
+                    'type' => [],
+                    'ordine' => [],
+                ],
+                'orderKey' => 'ordine',
             ],
         ],
         'params' => [
@@ -166,12 +216,39 @@ return [
                 'afterNewCallbackMethods' => ['filesOps'],
                 'afterUpdateCallbackMethods' => ['filesOps'],
             ],
+            "attachments" => [
+                "fields" => [
+                    'nome_it' => [],
+                    'descrizione_it' => [],
+                    'resource' => [],
+                    'ordine' => [],
+                ],
+                'orderKey' => 'ordine',
+
+                'beforeNewCallbackMethods' => ['setFieldsFromResource'],
+                'beforeUpdateCallbackMethods' => ['setFieldsFromResource'],
+                'afterNewCallbackMethods' => ['filesOps'],
+                'afterUpdateCallbackMethods' => ['filesOps'],
+            ],
+            "videos" => [
+                "fields" => [
+                    'nome_it' => [],
+                    'descrizione_it' => [],
+                    'link' => [],
+                    'type' => [],
+                    'ordine' => [],
+                ],
+                'orderKey' => 'ordine',
+            ],
         ],
         'params' => [
 
         ],
     ],
     'weblist' => [
+        'dependencies' => [
+            'search' => 'search',
+        ],
         'form_type' => 'list',
         'fields' => [
             'id' => [],
@@ -197,6 +274,30 @@ return [
                 'beforeUpdateCallbackMethods' => ['setFieldsFromResource'],
                 'afterNewCallbackMethods' => ['filesOps'],
                 'afterUpdateCallbackMethods' => ['filesOps'],
+            ],
+            "attachments" => [
+                "fields" => [
+                    'nome_it' => [],
+                    'descrizione_it' => [],
+                    'resource' => [],
+                    'ordine' => [],
+                ],
+                'orderKey' => 'ordine',
+
+                'beforeNewCallbackMethods' => ['setFieldsFromResource'],
+                'beforeUpdateCallbackMethods' => ['setFieldsFromResource'],
+                'afterNewCallbackMethods' => ['filesOps'],
+                'afterUpdateCallbackMethods' => ['filesOps'],
+            ],
+            "videos" => [
+                "fields" => [
+                    'nome_it' => [],
+                    'descrizione_it' => [],
+                    'link' => [],
+                    'type' => [],
+                    'ordine' => [],
+                ],
+                'orderKey' => 'ordine',
             ],
         ],
         'params' => [

@@ -34,9 +34,10 @@ var ModelCupSiteNews = {
         }
     },
     edit : {
-        fields : ['titolo_it','descrizione_it','data','data_fine','attivo','fotos'],
+        fields : ['titolo_it','descrizione_it','data','data_fine','attivo','fotos','attachments'],
         constraintKey : 'cup_site_page_id',
         routeName : 'edit-constraint',
+        constraintValue : 2,  // per test
         methods : {
             setRouteValues: function (route) {
                 var that = this;
@@ -72,6 +73,29 @@ var ModelCupSiteNews = {
                             maxFileSize : '2M',
                             ajaxFields : {
                                 field : 'fotos|resource',
+                                //resource_type : 'attachment'
+                            },
+                            modelName : 'cup_site_news'
+                        },
+                        status : 'w-hidden',
+                        id : 'w-hidden',
+                    }
+                }
+            },
+            attachments : {
+                type :'w-hasmany',
+                template : 'tpl-full-no',
+                hasmanyConf : {
+                    fields : [
+                        'id','nome_it','descrizione_it','resource','status'
+                    ],
+                    fieldsConfig : {
+                        resource : {
+                            type : 'w-upload-ajax',
+                            //extensions : ['csv','xls'],
+                            maxFileSize : '2M',
+                            ajaxFields : {
+                                field : 'attachments|resource',
                                 //resource_type : 'attachment'
                             },
                             modelName : 'cup_site_news'
