@@ -24,8 +24,8 @@ class CupSiteController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
-        self::$layout = config('cupparis-site.layout');
-        $setting = CupSiteSetting::where('attivo',1)->first();
+        $setting = CupSiteSetting::where('default',1)->first();
+        self::$layout = $setting->layout; // config('cupparis-site.layout');
         if (!$setting) {
             $setting = CupSiteSetting::first();
         }

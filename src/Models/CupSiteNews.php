@@ -62,6 +62,7 @@ class CupSiteNews extends Breeze
             $this->menu_it = 'new' . rand();
             parent::save($options);
         }
+
         $this->menu_it = $this->getKey() . "-" . str_replace(' ','-',$this->titolo_it);
         return parent::save($options);
     }

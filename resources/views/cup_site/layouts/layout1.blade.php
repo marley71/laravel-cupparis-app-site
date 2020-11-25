@@ -25,7 +25,7 @@
 
     <link rel="manifest" href="/{{config('cupparis-site.public_path')}}/assets/images/manifest/manifest.json">
     <meta name="theme-color" content="#377dff">
-
+    <style href="/admin/assets/css/cup_site.css"></style>
 </head>
 
 <body>

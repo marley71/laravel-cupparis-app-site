@@ -73,8 +73,24 @@ return [
             'cup_site_page_id' => []
         ],
         'relations' => [
+            "fotos" => [
+                "fields" => [
+                    'id' => [],
+                    'nome_it' => [],
+                    'descrizione_it' => [],
+                    'resource' => [],
+                    'ordine' => [],
+                ],
+                'orderKey' => 'ordine',
+
+                'beforeNewCallbackMethods' => ['setFieldsFromResource'],
+                'beforeUpdateCallbackMethods' => ['setFieldsFromResource'],
+                'afterNewCallbackMethods' => ['filesOps'],
+                'afterUpdateCallbackMethods' => ['filesOps'],
+            ],
             "attachments" => [
                 "fields" => [
+                    'id' => [],
                     'nome_it' => [],
                     'descrizione_it' => [],
                     'resource' => [],
@@ -89,6 +105,7 @@ return [
             ],
             "videos" => [
                 "fields" => [
+                    'id' => [],
                     'nome_it' => [],
                     'descrizione_it' => [],
                     'link' => [],
@@ -126,6 +143,7 @@ return [
         'relations' => [
             "fotos" => [
                 "fields" => [
+                    'id' => [],
                     'nome_it' => [],
                     'descrizione_it' => [],
                     'resource' => [],
@@ -140,6 +158,7 @@ return [
             ],
             "attachments" => [
                 "fields" => [
+                    'id' => [],
                     'nome_it' => [],
                     'descrizione_it' => [],
                     'resource' => [],
@@ -154,8 +173,13 @@ return [
             ],
             "videos" => [
                 "fields" => [
+                    'id' => [],
                     'nome_it' => [],
                     'descrizione_it' => [],
+                    'provider' => [],
+                    'json_data' => [
+                        'default' => '',
+                    ],
                     'link' => [],
                     'type' => [],
                     'ordine' => [],
@@ -204,6 +228,7 @@ return [
         'relations' => [
             "fotos" => [
                 "fields" => [
+                    'id' => [],
                     'nome_it' => [],
                     'descrizione_it' => [],
                     'resource' => [],
@@ -218,6 +243,7 @@ return [
             ],
             "attachments" => [
                 "fields" => [
+                    'id' => [],
                     'nome_it' => [],
                     'descrizione_it' => [],
                     'resource' => [],
@@ -232,11 +258,13 @@ return [
             ],
             "videos" => [
                 "fields" => [
+                    'id' => [],
                     'nome_it' => [],
                     'descrizione_it' => [],
                     'link' => [],
                     'type' => [],
                     'ordine' => [],
+                    'video_id' => [],
                 ],
                 'orderKey' => 'ordine',
             ],
@@ -263,6 +291,7 @@ return [
         'relations' => [
             "fotos" => [
                 "fields" => [
+                    'id' => [],
                     'nome_it' => [],
                     'descrizione_it' => [],
                     'resource' => [],
@@ -277,6 +306,7 @@ return [
             ],
             "attachments" => [
                 "fields" => [
+                    'id' => [],
                     'nome_it' => [],
                     'descrizione_it' => [],
                     'resource' => [],
@@ -291,6 +321,7 @@ return [
             ],
             "videos" => [
                 "fields" => [
+                    'id' => [],
                     'nome_it' => [],
                     'descrizione_it' => [],
                     'link' => [],

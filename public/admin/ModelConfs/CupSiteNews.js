@@ -34,10 +34,10 @@ var ModelCupSiteNews = {
         }
     },
     edit : {
-        fields : ['titolo_it','descrizione_it','data','data_fine','attivo','fotos','attachments'],
+        fields : ['titolo_it','descrizione_it','data','data_fine','attivo','fotos','attachments','videos'],
         constraintKey : 'cup_site_page_id',
         routeName : 'edit-constraint',
-        constraintValue : 2,  // per test
+        //constraintValue : 2,  // per test
         methods : {
             setRouteValues: function (route) {
                 var that = this;
@@ -68,6 +68,7 @@ var ModelCupSiteNews = {
                     ],
                     fieldsConfig : {
                         resource : {
+                            template : 'tpl-full-no',
                             type : 'w-upload-ajax',
                             //extensions : ['csv','xls'],
                             maxFileSize : '2M',
@@ -102,6 +103,26 @@ var ModelCupSiteNews = {
                         },
                         status : 'w-hidden',
                         id : 'w-hidden',
+                    }
+                }
+            },
+            videos : {
+                type :'w-hasmany',
+                template : 'tpl-full-no',
+                hasmanyConf : {
+                    fields : [
+                        'id','nome_it','descrizione_it','link','provider','json_data','status'
+                    ],
+                    fieldsConfig : {
+                        link : {
+                            template : 'tpl-full-no',
+                            type : 'w-video',
+                            //extensions : ['csv','xls'],
+                        },
+                        status : 'w-hidden',
+                        id : 'w-hidden',
+                        json_data : 'w-hidden',
+                        provider : 'w-select',
                     }
                 }
             }

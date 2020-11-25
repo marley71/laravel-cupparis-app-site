@@ -22,9 +22,6 @@
                                         </li>
                                     </ul>
                                 </li>
-
-
-
                             </ul>
                         </div>
                         <div><a href="javascript:history.location" v-on:click="showSetting()">Impostazioni Sito</a></div>
@@ -41,12 +38,14 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 <script>
-    app.loadResources([
-        '/cup_site/components/templates/c-site-page.html',
-        '/cup_site/components/js/c-site-page.js',
-        '/cup_site/components/templates/v-calendar.html',
-        '/cup_site/components/js/v-calendar.js',
-    ])
+    // app.loadResources([
+    //     '/cup_site/components/templates/c-site-page.html',
+    //     '/cup_site/components/js/c-site-page.js',
+    //     '/cup_site/components/templates/v-calendar.html',
+    //     '/cup_site/components/js/v-calendar.js',
+    //     '/cup_site/components/templates/w-video.html',
+    //     '/cup_site/components/js/w-video.js',
+    // ])
 
     var pageManager = {
         modelName:'cup_site_page',
@@ -415,31 +414,34 @@
     //         }
     //     }
     // }
-    var settingsEdit = {
-        modelName : 'cup_site_setting',
-        pk : 1,
-        fields : ['logo','properties'],
-        fieldsConfig: {
-            logo : {
-                type : 'w-upload',
-                uploadType : 'image'
-            },
-            properties : {
-                type : 'w-hasone-real',
-                template : 'tpl-full-no',
-                viewConf : {
-                    fieldsConfig : {
-                        slider1 : {
-                            type : 'w-select',
-                            domainValues : {
-                                '' : 'Nessuno',
-                                '1' : 'Si',
-                            }
-                        }
-                    }
+    settingsEdit = ModelCupSiteSetting.edit;
+    settingsEdit.pk = 1;
 
-                }
-            }
-        }
-    }
+    // var settingsEdit = {
+    //     modelName : 'cup_site_setting',
+    //     pk : 1,
+    //     fields : ['logo','properties'],
+    //     fieldsConfig: {
+    //         logo : {
+    //             type : 'w-upload',
+    //             uploadType : 'image'
+    //         },
+    //         properties : {
+    //             type : 'w-hasone-real',
+    //             template : 'tpl-full-no',
+    //             viewConf : {
+    //                 fieldsConfig : {
+    //                     slider1 : {
+    //                         type : 'w-select',
+    //                         domainValues : {
+    //                             '' : 'Nessuno',
+    //                             '1' : 'Si',
+    //                         }
+    //                     }
+    //                 }
+    //
+    //             }
+    //         }
+    //     }
+    // }
 </script>

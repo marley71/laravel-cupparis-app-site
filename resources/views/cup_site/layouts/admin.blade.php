@@ -55,6 +55,17 @@
         crud.apiKey = "{{env('GOOGLE_MAP_KEY')}}";
         crud.EventBus = new Vue();
         crud.layoutGradientColor = '{{$layoutGradientColor}}';
+
+        // app.loadResources([
+        //     '/cup_site/components/templates/c-site-page.html',
+        //     '/cup_site/components/js/c-site-page.js',
+        //     '/cup_site/components/templates/v-calendar.html',
+        //     '/cup_site/components/js/v-calendar.js',
+        //     '/cup_site/components/templates/w-video.html',
+        //     '/cup_site/components/js/w-video.js',
+        // ])
+
+
         crud.components.libs = {
             'csv-dashboard' : {
                 js : '{!! Theme::url("components/js/csv-dashboard.js") !!}',
@@ -77,7 +88,21 @@
             'c-drag-drop' : {
                 js  : '{!! Theme::url("components/js/c-drag-drop.js") !!}',
                 tpl : '{!! Theme::url("components/templates/c-drag-drop.html") !!}',
+            },
+            'c-site-page' : {
+                js  : '{!! Theme::url("/cup_site/components/js/c-site-page.js") !!}',
+                tpl : '{!! Theme::url("/cup_site/components/templates/c-site-page.html") !!}',
+            },
+            'v-calendar' : {
+                js  : '{!! Theme::url("/cup_site/components/js/v-calendar.js") !!}',
+                tpl : '{!! Theme::url("/cup_site/components/templates/v-calendar.html") !!}',
+            },
+            'w-video' : {
+                js  : '{!! Theme::url("/cup_site/components/js/w-video.js") !!}',
+                tpl : '{!! Theme::url("/cup_site/components/templates/w-video.html") !!}',
             }
+
+
         },
             {{--crud.routes['pages'] = {--}}
                 {{--        url : '{!! Theme::url("pages") !!}/{path}',--}}
@@ -100,6 +125,7 @@
             });
     });
 </script>
+<style href="/admin/assets/css/cup_site.css"></style>
 @yield('extra_scripts')
 @include('includes.inline-templates')
 {{--        <script src="{!! Theme::url('assets/js/core.js') !!}"></script>--}}

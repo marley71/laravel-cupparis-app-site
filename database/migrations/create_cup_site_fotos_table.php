@@ -23,12 +23,12 @@ class CreateCupSiteFotosTable extends Migration {
 //            $table->text('descrizione_en')->nullable();
 //            $table->string('nome_es')->nullable();
 //            $table->text('descrizione_es')->nullable();
-            $table->integer('ordine')->unsigned()->default(0);
+            $table->integer('ordine')->nullable()->default(0);
             $table->string('mediable_type')->nullable();
             $table->integer('mediable_id')->unsigned()->nullable();
             $table->timestamps();
             $table->nullableOwnerships();
-            $table->unique(['mediable_type','mediable_id','ordine']);
+            $table->unique(['mediable_type','mediable_id']);
 		});
 	}
 

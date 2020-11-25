@@ -52,5 +52,11 @@ class CupSiteSetting extends Breeze
     public $itemNoneForSelectList = false;
     public $fieldsSeparator = ' - ';
 
+    public function getPropertiesAttribute($value) {
+        return json_decode($value,true);
+    }
 
+    public function setPropertiesAttribute($value) {
+        $this->attributes['twa_json'] = cupparis_json_encode($value);
+    }
 }

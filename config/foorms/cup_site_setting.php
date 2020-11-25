@@ -79,6 +79,21 @@ return [
 
 
     'edit' => [
+        'actions' => [
+            'uploadfile' => [
+                'allowed_fields' => [
+                    'logo',
+                ],
+                'fields' => [
+                    'logo' => [
+                        'resource_type' => 'foto',
+                        //'max_size' => '4M',
+                        //'exts' => 'jpg,png',
+                    ],
+                ],
+            ],
+
+        ],
         'fields' => [
             'id' => [
 
