@@ -10,9 +10,10 @@
 	-->
 <body class="layout-admin aside-sticky layout-padded">
 <div id="wrapper" class="d-flex align-items-stretch flex-column">
-    <c-router ref="menu"  c-content-id="middle"></c-router>
+    <c-router ref="router"  c-content-id="middle"></c-router>
     @include('includes.header')
-    <div id="" class="d-flex flex-fill">
+    <div id="wrapper_content" class="d-flex flex-fill">
+        @include('includes.sidebar')
 
     <!-- MIDDLE -->
         <div id="middle" class="flex-fill">
@@ -56,16 +57,6 @@
         crud.EventBus = new Vue();
         crud.layoutGradientColor = '{{$layoutGradientColor}}';
 
-        // app.loadResources([
-        //     '/cup_site/components/templates/c-site-page.html',
-        //     '/cup_site/components/js/c-site-page.js',
-        //     '/cup_site/components/templates/v-calendar.html',
-        //     '/cup_site/components/js/v-calendar.js',
-        //     '/cup_site/components/templates/w-video.html',
-        //     '/cup_site/components/js/w-video.js',
-        // ])
-
-
         crud.components.libs = {
             'csv-dashboard' : {
                 js : '{!! Theme::url("components/js/csv-dashboard.js") !!}',
@@ -100,6 +91,10 @@
             'w-video' : {
                 js  : '{!! Theme::url("/cup_site/components/js/w-video.js") !!}',
                 tpl : '{!! Theme::url("/cup_site/components/templates/w-video.html") !!}',
+            },
+            'v-tree' : {
+                js  : '{!! Theme::url("/cup_site/components/js/v-tree.js") !!}',
+                tpl : '{!! Theme::url("/cup_site/components/templates/v-tree.html") !!}',
             }
 
 

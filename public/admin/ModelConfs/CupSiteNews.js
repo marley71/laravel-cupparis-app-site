@@ -1,5 +1,6 @@
 var ModelCupSiteNews = {
     list : {
+        modelName : 'cup_site_news',
         fields : ['data','titolo_it','attivo'],
         constraintKey : 'cup_site_page_id',
         routeName : 'list-constraint',
@@ -34,6 +35,7 @@ var ModelCupSiteNews = {
         }
     },
     edit : {
+        modelName : 'cup_site_news',
         fields : ['titolo_it','descrizione_it','data','data_fine','attivo','fotos','attachments','videos'],
         constraintKey : 'cup_site_page_id',
         routeName : 'edit-constraint',
@@ -136,7 +138,6 @@ ModelCupSiteNews.insert = Object.assign(ModelCupSiteNews.insert, {
     methods: {
         setRouteValues: function (route) {
             var that = this;
-            alert('ss  ' + that.routeName);
             route.setValues({
                 modelName: that.modelName,
                 constraintKey: that.constraintKey,

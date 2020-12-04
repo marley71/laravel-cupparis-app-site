@@ -44,7 +44,7 @@ class CupSiteNews extends Breeze
     public $columnsForSelectList = ['titolo_it'];
      //['id','nome_it'];
 
-    public $defaultOrderColumns = ['id' => 'ASC', ];
+    public $defaultOrderColumns = ['data' => 'DESC', ];
      //['cognome' => 'ASC','nome' => 'ASC'];
 
     public $columnsSearchAutoComplete = ['titolo_it'];
